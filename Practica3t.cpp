@@ -291,6 +291,14 @@ int  minutos=0, var=0, segundos;
     }
  
 }
+Artista::Artista(){
+    if(debug==true)
+    cout << DEBUG <<  "Se invoca al Constructor Artista."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+
+    this->setIdArtista(0);
+    this->setNombreArtista("NULL");
+}
 unsigned int Artista::getIdArtista()const {
     return this->idArtista;
 }
@@ -358,11 +366,18 @@ bool Cancion::getActivo() const{
 void Cancion::setActivo(const bool activo){
     this->activo=activo;
 }
-Cancion (){
+void Cancion::setNombreCancion(const string nuevo){
+    this->nombre=nuevo;
+}
+Cancion::Cancion(){
+    if(debug==true)
     cout << DEBUG <<  "Se invoca al Constructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
-         
+    this->setIdCancion(0);
+    this->setNombreCancion("NULL");
+    
+
 }
 int main (){
 
