@@ -1,45 +1,7 @@
-class Artista{
+#include <iostream>
+#include "Artista.h"
+using namespacetd;
 
-    private:
-        unsigned int idArtista;
-        string nombre;
-    public:
-        /**
-         * @brief Construct a new Artista object
-         * 
-         */
-        Artista();
-        /**
-         * @brief Destroy the Artista object
-         * 
-         */
-        ~Artista();
-        /**
-         * @brief Get the Id Artista object
-         * 
-         * @return unsigned int 
-         */
-        unsigned int getIdArtista() const ;
-
-        /**
-         * @brief Set the Id Artista object
-         * 
-         * @param nuevo 
-         */
-        void setIdArtista(const unsigned int nuevo);
-
-        /**
-         * @brief Get the Nombre Artista object
-         * 
-         * @return string 
-         */
-        string getNombreArtista() const ;
-        /**
-         * @brief 
-         * 
-         */
-        void setNombreArtista(const string nuevo);
-};
 Artista::Artista(){
     if(debug==true)
     cout << DEBUG <<  "Se invoca al Constructor Artista."

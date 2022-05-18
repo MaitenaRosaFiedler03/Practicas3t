@@ -1,130 +1,51 @@
-class Cancion{
-    private:
-        unsigned int idCancion;
-        string nombre;  
-        Artista** v_Artista;
-        int util_artista;
-        Tiempo duracion;
-        int total_reproducciones;
-        bool activo;
+#include <iostream>
+#include <iomanip>
+#include "Cancion.h"
+using namespace std;
+
+#define RESET   "\033[0m"
+#define DEFAULT   "\033[0m"        
+#define DEBUG    "\033[31m"      /*DEBUG*/
+#define GREEN   "\033[32m"      /*MENSAJES AL USUARIO*/ 
+#define YELLOW  "\033[33m"      /*MENSAJE DE ERROR*/
+#define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
+
+bool debug=true;
+
+void Cancion::operator=(const Cancion &c){
+
+    cout << DEBUG <<  "Se invoca al operador= de Cancion."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+
+    if(this->v_Artista==0){
+        this->v_Artista = new float [c.util_artista+1];
+    
+    
+        if (this->v_Artista == 0){
+            cerr << "NO hay memoria disponible... Cerrando programa" << endl;
+            exit(-1);
+        }
+    
+    }
+   for(int i=0;i < this->util_artista)
+        this->v_Artista=0;
+    //se copian los valores de los grados
+    this ->idCancion=c.getIdCancion();
+    this->nombre=c.getNombreCancion();
+    this->util_artista=c.getUtil_artista;
+    this->total_reproducciones=c.getTotalRepro();
+    this->duracion=c.getDuracion();
 
 
-    public:
+    for(int i =0; i < this->getMaxGrado() +1; i++){
+        this->v_Artista[i]= c.getArtista(i);
+       
+    }
+}
 
-        /**
-         * @brief Construct a new Cancion object
-         * 
-         */
-        Cancion();
 
-        /**
-         * @brief Destroy the Cancion object
-         * 
-         */
-        ~Cancion();
-        /**
-         * @brief Get the Id Cancion object
-         * 
-         * @return unsigned int 
-         */
-        unsigned int getIdCancion() const ;
-
-        /**
-         * @brief Set the Id Cancion object
-         * 
-         * @param nuevo 
-         */
-        void setIdCancion(const unsigned int nuevo );
-
-        /**
-         * @brief Get the Nombre Cancion object
-         * 
-         * @return string 
-         */
-        string getNombreCancion() const ;
-
-        /**
-         * @brief Set the Nombre Cancion object
-         * 
-         * @param nuevo 
-         */
-        void setNombreCancion(const string nuevo);
-
-        /**
-         * @brief Get the Artista object
-         * 
-         * @param i 
-         * @return Artista 
-         */
-        Artista* getArtista(int i) const ;
-
-        /**
-         * @brief Set the Artista object
-         * 
-         * @param a 
-         */
-        void setArtista( Artista* a, int i);
-
-        /**
-         * @brief Get the Duracion object
-         * 
-         * @return Tiempo 
-         */
-        Tiempo getDuracion() const;
-
-        /**
-         * @brief Set the Duracion object
-         * 
-         * 
-         * @param t 
-         */
-        void setDuracion(const Tiempo &t);
-
-        /**
-         * @brief Get the Total Repro object
-         * 
-         * @return int 
-         */
-        int getTotalRepro() const ;
-
-        /**
-         * @brief Set the Total Repro object
-         * 
-         * @param nuevo 
-         */
-        void setTotalRepro(const int nuevo); 
-        /**
-         * @brief Get the Activo object
-         * 
-         * @return true 
-         * @return false 
-         */
-        bool getActivo()const ;
-
-        /**
-         * @brief Set the Activo object
-         * 
-         * @param activo 
-         */
-        void setActivo(const bool activo);
-
-        /**
-         * @brief Set the Util artista object
-         * 
-         * @param nueva 
-         */
-        void setUtil_artista(const int nueva);
-
-        /**
-         * @brief Get the Util artista object
-         * 
-         * @return int 
-         */
-        int getUtil_artista()const;
-};
-
-void Cancion::getUtil_artista() const {
-    this->getUtil_artista;
+int Cancion::getUtil_artista()const {
+    return this->Util_artista;
 }
 int Cancion::setUtil_artista(const int nueva){
     this->util_artista=nueva;
@@ -179,10 +100,16 @@ void Cancion::setActivo(const bool activo){
 void Cancion::setNombreCancion(const string nuevo){
     this->nombre=nuevo;
 }
-string Cancion::getNombreCancion(){
+string Cancion::getNombreCancion()const{
     return this->nombre;
 }
-void Cancion::
+void Cancion::~Cancion(){
+
+    if(debug==true)
+    cout << DEBUG <<  "Se invoca al Destructor Cancion."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+
+}
 Cancion::Cancion(){
     if(debug==true)
     cout << DEBUG <<  "Se invoca al Constructor Cancion."
@@ -191,7 +118,13 @@ Cancion::Cancion(){
     this->setIdCancion(0);
     this->setNombreCancion("NULL");
     this->setDuracion(0);
+
+     this->v_Artista  =new Artista* [];
+
+     for (int i=0; i< this->getUtil_artista();i++){
+         this->v_Artista[i]=0;
+     }
     this->setArtista(0,0);
 
-    for(int i=0; i < g)
+   
 }
