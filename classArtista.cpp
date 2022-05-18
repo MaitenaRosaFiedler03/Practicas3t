@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Artista.h"
+#include "Cancion.h"
+
 using namespace std;
 
 #define RESET   "\033[0m"
@@ -18,26 +20,14 @@ Artista::Artista(){
 
     this->setIdArtista(0);
     this->setNombreArtista("NULL");
-    this->setUtilCancionesCreadas(0);
-    this->canciones = new Cancion [1];
-
-    if (this->canciones== 0){
-        cerr << "NO hay memoria disponible... Cerrando programa" << endl;
-        exit(-1);
-    }
-
+}
 Artista:: ~Artista(){
-
     if(debug==true)
     cout << RED <<  "Se invoca al Destructor Artista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
     this->setIdArtista(0);
-    this->setNombreArtista(0);
-    this->setUtilCancionesCreadas(0);
-    this->setCancionesArtista(0);
-    delete this->canciones;
-
+    this->setNombreArtista("NULL");
 }
 unsigned int Artista::getIdArtista()const {
     return this->idArtista;
@@ -47,7 +37,8 @@ void Artista::setIdArtista(const unsigned int nuevo){
     if(debug==true)
         cout << RED << "Estableciendo idArtista" << "La dirección de this es: " << this << RESET << endl;
 
-    this->idArtista=nuevo.;
+
+    this->idArtista=nuevo;
 }
 string Artista::getNombreArtista()const {
     return this->nombre;
@@ -59,27 +50,18 @@ void Artista::setNombreArtista(const string nuevo){
 
     this->nombre=nuevo;
 }
-void Artista::setUtilCancionesCreadas(const int &total){
-   
-    if(debug==true)
-        cout << RED << "Estableciendo la util de las canciones creadas" << "La dirección de this es: " << this << RESET << endl;
 
-    this->util_canciones=total;
+bool Artista::getActivado() const {
+    return this->activado;
 }
-Artista::Artista(const Artista &a){
-    if(debug==true)
-    cout << RED <<  "Se invoca al Constructor por copia Artista."
-         << "La dirección de this es: " << this << DEFAULT << endl;
 
-    this->setIdArtista(a.getIdArtista());
-    this->setNombreArtista(a.getNombreArtista());
-    this->setUtilCancionesCreadas(a.getUtilCancionesCreadas);
-    this->canciones = new Cancion [a.getUtilCancionesCreadas+1];
+void Artista::setActivado(bool nuevo){
+    this->activado=nuevo;
+}
 
-    if (this->canciones == 0){
-        cerr << "NO hay memoria disponible... Cerrando programa" << endl;
-        exit(-1);
-    }
-
-    for(int i=0; i <= this->getUtilCancionesCreadas() ; i++)
-}   
+Cancion* Artista::getCancionArtista(){
+    return this->canciones;
+}
+void Artista::setCancionesArtista(Cancion* nuevo, int i){
+    this->canciones[i];
+}

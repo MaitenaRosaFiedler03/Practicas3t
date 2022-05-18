@@ -5,24 +5,33 @@
 #include "Tiempo.h"
 using namespace std;
 
+#define RESET   "\033[0m"
+#define DEFAULT   "\033[0m"        
+#define RED    "\033[31m"      /*RED*/
+#define GREEN   "\033[32m"      /*MENSAJES AL USUARIO*/ 
+#define YELLOW  "\033[33m"      /*MENSAJE DE ERROR*/
+#define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
+
+bool debug=true;
+
 
 Tiempo::Tiempo(){
 
     if(debug==true)
-        cout << DEBUG <<  "Se invoca al Constructor Tiempo." << "La dirección de this es: " << this << DEFAULT << endl;
+        cout << RED <<  "Se invoca al Constructor Tiempo." << "La dirección de this es: " << this << DEFAULT << endl;
 
     this->segundos=0;
     this->minutos=0;
 }
 Tiempo::~Tiempo (){
     if(debug==true)
-    cout << DEBUG <<  "Se invoca al Destructor del Tiempo." << "La dirección de this es: " << this << DEFAULT << endl;
+    cout << RED <<  "Se invoca al Destructor del Tiempo." << "La dirección de this es: " << this << DEFAULT << endl;
 
 }
 Tiempo::Tiempo(const int minutos, const int segundos){
 
     if(debug==true)
-     cout << DEBUG <<  "Se invoca al Constructor por copia Tiempo."
+     cout << RED <<  "Se invoca al Constructor por copia Tiempo."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
     this->segundos=segundos;
@@ -31,7 +40,7 @@ Tiempo::Tiempo(const int minutos, const int segundos){
 void Tiempo::setSegundos(const int segundos){
 
     if(debug==true)
-        cout << DEBUG << "Estableciendo segundos"  << "La dirección de this es: " << this << RESET << endl;
+        cout << RED << "Estableciendo segundos"  << "La dirección de this es: " << this << RESET << endl;
 
     this->segundos=segundos;
 }
@@ -41,7 +50,7 @@ int Tiempo::getSegundos()const{
 void Tiempo::setMinutos(const int minutos){
 
     if(debug==true)
-        cout << DEBUG << "Estableciendo minutos" << "La dirección de this es: " << this << RESET << endl;
+        cout << RED << "Estableciendo minutos" << "La dirección de this es: " << this << RESET << endl;
 
 
     this->minutos=minutos;

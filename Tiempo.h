@@ -1,5 +1,5 @@
 #include <iostream>
-using namespacetd;
+using namespace std;
 
 class Tiempo{
     private: 

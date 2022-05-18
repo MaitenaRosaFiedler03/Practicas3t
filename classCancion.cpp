@@ -1,11 +1,12 @@
 #include <iostream>
 #include <iomanip>
 #include "Cancion.h"
+
 using namespace std;
 
 #define RESET   "\033[0m"
 #define DEFAULT   "\033[0m"        
-#define DEBUG    "\033[31m"      /*DEBUG*/
+#define RED    "\033[31m"      /*RED*/
 #define GREEN   "\033[32m"      /*MENSAJES AL USUARIO*/ 
 #define YELLOW  "\033[33m"      /*MENSAJE DE ERROR*/
 #define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
@@ -14,11 +15,11 @@ bool debug=true;
 
 void Cancion::operator=(const Cancion &c){
 
-    cout << DEBUG <<  "Se invoca al operador= de Cancion."
+    cout << RED <<  "Se invoca al operador= de Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
     if(this->v_Artista==0){
-        this->v_Artista = new float [c.util_artista+1];
+        this->v_Artista = new Artista* [c.util_artista+1];
     
     
         if (this->v_Artista == 0){
@@ -27,25 +28,25 @@ void Cancion::operator=(const Cancion &c){
         }
     
     }
-   for(int i=0;i < this->util_artista)
-        this->v_Artista=0;
+   for(int i=0;i < this->util_artista;i++)
+        this->v_Artista[i]=c.getArtista(i);
+
     //se copian los valores de los grados
     this ->idCancion=c.getIdCancion();
     this->nombre=c.getNombreCancion();
-    this->util_artista=c.getUtil_artista;
+    this->util_artista=c.getUtil_artista();
     this->total_reproducciones=c.getTotalRepro();
     this->duracion=c.getDuracion();
 
 
-    for(int i =0; i < this->getMaxGrado() +1; i++){
+    for(int i =0; i < this->getUtil_artista() +1; i++){
         this->v_Artista[i]= c.getArtista(i);
        
     }
 }
 
-
 int Cancion::getUtil_artista()const {
-    return this->Util_artista;
+    return this->util_artista;
 }
 int Cancion::setUtil_artista(const int nueva){
     this->util_artista=nueva;
@@ -57,7 +58,7 @@ unsigned int Cancion::getIdCancion()const {
 void Cancion::setIdCancion(const unsigned int nuevo){
 
     if(debug==true)
-        cout << DEBUG << "Estableciendo idCancion" << "La dirección de this es: " << this << RESET << endl;
+        cout << RED << "Estableciendo idCancion" << "La dirección de this es: " << this << RESET << endl;
 
     this->idCancion=nuevo;
 }
@@ -67,7 +68,7 @@ Artista* Cancion::getArtista(int i) const{
 void Cancion::setArtista( Artista *nuevo, int i ){
 
     if(debug==true)
-        cout << DEBUG << "Estableciendo artista en la cancion" << "La dirección de this es: " << this << RESET << endl;
+        cout << RED << "Estableciendo artista en la cancion" << "La dirección de this es: " << this << RESET << endl;
 
     this->v_Artista[i]=nuevo;
 }
@@ -77,7 +78,7 @@ Tiempo Cancion::getDuracion() const {
 void Cancion::setDuracion(const Tiempo &t){
 
     if(debug==true)
-        cout << DEBUG << "Estableciendo la duracion de la cancion" << "La dirección de this es: " << this << RESET << endl;
+        cout << RED << "Estableciendo la duracion de la cancion" << "La dirección de this es: " << this << RESET << endl;
 
     this->duracion=t;
 }
@@ -87,7 +88,7 @@ int Cancion::getTotalRepro() const {
 void Cancion::setTotalRepro(int total){
 
     if(debug==true)
-        cout << DEBUG << "Estableciendo total reproducciones de la cancion " << "La dirección de this es: " << this << RESET << endl;
+        cout << RED << "Estableciendo total reproducciones de la cancion " << "La dirección de this es: " << this << RESET << endl;
 
     this->total_reproducciones=total;
 }
@@ -103,28 +104,88 @@ void Cancion::setNombreCancion(const string nuevo){
 string Cancion::getNombreCancion()const{
     return this->nombre;
 }
-void Cancion::~Cancion(){
+Cancion::~Cancion(){
 
     if(debug==true)
-    cout << DEBUG <<  "Se invoca al Destructor Cancion."
+    cout << RED <<  "Se invoca al Destructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
 }
 Cancion::Cancion(){
+
+    Artista* a=new Artista;
+    Tiempo t;
+    t.setMinutos(0);
+    t.setSegundos(0);
+
+    a->setIdArtista(0);
+    a->setNombreArtista("NULL");
+
     if(debug==true)
-    cout << DEBUG <<  "Se invoca al Constructor Cancion."
+    cout << RED <<  "Se invoca al Constructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
     this->setIdCancion(0);
     this->setNombreCancion("NULL");
-    this->setDuracion(0);
+    this->setDuracion(t);
 
      this->v_Artista  =new Artista* [];
 
      for (int i=0; i< this->getUtil_artista();i++){
-         this->v_Artista[i]=0;
+         this->v_Artista[i]=a;
      }
     this->setArtista(0,0);
 
-   
+void Cancion::resize(int dim_nueva){
+
+    Artista *nuevo= 0;
+     
+    nuevo=  =new Artista* [];
+    
+    if(nuevo == 0){
+        cerr << "No hay espacio suficiente. Se terminará la ejecución del programa." << endl;
+        exit(-1);
+    }
+    else 
+    cout << GREEN << "Vector creado correctamente.." << RESET << endl;
+    
+    //se inicializa el nuevo vector a cero 
+
+    for(int i=0; i < dim_nueva +1; i++){
+        nuevo[i]=0.0;
+         
+        //cout << "(resise(inicializaciòn))nuevo ["  <<  i << "]: "  << nuevo[i] << endl; 
+    }
+    
+    //si la nueva dimensiòn es menor que la dimension actual -1 (el grado maximo del polinomio)
+    if(dim_nueva < this ->getUtil_Artista()){
+       
+        for(int i=0; i < dim_nueva +1; i++){
+            
+            nuevo[i]= this->getArtista(i);
+            // cout << "(resise(dim<gradoM))nuevo ["  <<  i << "]: "  << nuevo[i] << endl; 
+           
+        }        
+
+    }
+
+    //si la nueva dimensiòn es mayor que la dimensiòn -1 (el grado maximo del polinomio )
+    else if(dim_nueva >= this->getUtil_artista()){
+       // cout << "this->getMaxGrado() +1 " << this->getMaxGrado() << endl;
+        //se copian los valores hasta el grado maximo (todos los valores del vector )
+        for(int i=0; i < this->getMaxGrado() +1; i++){
+            nuevo[i]= this-> getCoeficiente(i);
+           //cout << "(resise(dim_nueva>grado max))nuevo ["  <<  i << "]: "  << nuevo[i] << endl;
+        
+        }
+    }
+    //se elimina el antiguo vector 
+    delete [] this->v_Artistas; 
+
+    //se establece el nuevo grado maximo 
+    
+    //se iguala la direcciòn de memoria del vector dinamico coef con el nuefvo vector  
+    this-> v_Artista = nuevo;
+
+}
 }

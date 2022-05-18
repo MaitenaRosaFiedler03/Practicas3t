@@ -1,16 +1,18 @@
+
 #include <iostream>
-#include "Artista.h"
 #include "Tiempo.h"
+#include "Artista.h"
 using namespace std;
+
 class Cancion{
     private:
         unsigned int idCancion;
         string nombre;  
-        Artista** v_Artista[];
         int util_artista;
         Tiempo duracion;
         int total_reproducciones;
         bool activo;
+        Artista** v_Artista;
 
     public:
 
@@ -131,4 +133,6 @@ class Cancion{
          * @param p 
          */
          void operator=(const Cancion &c);
+
+        void resize(int dim_nueva);
 };
