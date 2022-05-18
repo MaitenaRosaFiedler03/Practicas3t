@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Cancion.h"
 #include "Artista.h"
 using namespace std;
 
@@ -19,7 +20,7 @@ Artista::Artista(){
     this->setIdArtista(0);
     this->setNombreArtista("NULL");
     this->setUtilCancionesCreadas(0);
-    this->canciones = new Cancion [1];
+    *this->canciones = new Cancion [1];
 
     if (this->canciones== 0){
         cerr << "NO hay memoria disponible... Cerrando programa" << endl;
@@ -38,6 +39,24 @@ Artista:: ~Artista(){
     this->setCancionesArtista(0);
     delete this->canciones;
 
+}
+Artista::Artista(const Artista &a){
+    if(debug==true)
+    cout << RED <<  "Se invoca al Constructor por copia Artista."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+
+    this->setIdArtista(a.getIdArtista());
+    this->setNombreArtista(a.getNombreArtista());
+    this->setUtilCancionesCreadas(a.getUtilCancionesCreadas);
+    this->canciones = new* Cancion [a.getUtilCancionesCreadas+1];
+
+    if (this->canciones == 0){
+        cerr << "NO hay memoria disponible... Cerrando programa" << endl;
+        exit(-1);
+    }
+
+    for(int i=0; i <= this->getUtilCancionesCreadas() ; i++)
+       this->canciones[i]=a.getCancionesArtista(i);
 }
 unsigned int Artista::getIdArtista()const {
     return this->idArtista;
@@ -59,6 +78,17 @@ void Artista::setNombreArtista(const string nuevo){
 
     this->nombre=nuevo;
 }
+bool Artista::getActivo()const {
+    return this->activado;
+}
+void Artista::setActivo(const bool nuevo){
+
+    if(debug==true)
+        cout << RED << "Estableciendo el activado" << "La dirección de this es: " << this << RESET << endl;
+
+
+    this->activado=nuevo;
+}
 void Artista::setUtilCancionesCreadas(const int &total){
    
     if(debug==true)
@@ -66,15 +96,30 @@ void Artista::setUtilCancionesCreadas(const int &total){
 
     this->util_canciones=total;
 }
-Artista::Artista(const Artista &a){
+
+Cancion* Artista::getCancionesArtista()const {
+    return this->canciones;
+}
+void Artista::setCancionesArtista(const Cancion* nuevo, int i){
+
+    if(debug==true)
+        cout << RED << "Estableciendo la cancion en artista" << "La dirección de this es: " << this << RESET << endl;
+
+
+    this->canciones[i]=nuevo;
+}
+void Artista::eliminarCancionDeArtista(const int &cancion){
+    
+}
+Artista:: Artista(const int &id, const string &nuevo, Cancion** c, const int &a){
     if(debug==true)
     cout << RED <<  "Se invoca al Constructor por copia Artista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
-    this->setIdArtista(a.getIdArtista());
-    this->setNombreArtista(a.getNombreArtista());
-    this->setUtilCancionesCreadas(a.getUtilCancionesCreadas);
-    this->canciones = new Cancion [a.getUtilCancionesCreadas+1];
+    this->setIdArtista(id);
+    this->setNombreArtista(nuevo);
+    this->setUtilCancionesCreadas(a);
+    this->canciones = new* Cancion [a+1];
 
     if (this->canciones == 0){
         cerr << "NO hay memoria disponible... Cerrando programa" << endl;
@@ -82,4 +127,6 @@ Artista::Artista(const Artista &a){
     }
 
     for(int i=0; i <= this->getUtilCancionesCreadas() ; i++)
-}   
+       this->canciones[i]=c.getCancionesArtista(i);
+}
+

@@ -83,7 +83,7 @@ class Artista{
          * 
          * @param nuevo 
          */
-        void setActivado(bool nuevo);
+        void setActivado(const bool nuevo);
 
         /**
          * @brief Get the Canciones Artista object
@@ -97,7 +97,7 @@ class Artista{
          * 
          * @param nueva 
          */
-        void setCancionesArtista(const Cancion* nueva);
+        void setCancionesArtista(const Cancion* nueva, int i);
 
         /**
          * @brief 
@@ -114,14 +114,14 @@ class Artista{
          * @param c 
          * @param i 
          */
-        Artista(const int &i, const string &nuevo, Cancion* c[], const int &a);
+        Artista(const int &i, const string &nuevo, Cancion** c, const int &a);
 
         /**
          * @brief Get the Util Canciones Creadas object
          * 
          * @return int 
          */
-        int getUtilCancionesCreadas();
+        int getUtilCancionesCreadas()const;
 
         /**
          * @brief 
@@ -137,6 +137,11 @@ class Artista{
          */
         friend ostream& operator<<(ostream&, const Artista&);
 
+        /**
+         * @brief 
+         * 
+         * @return istream& 
+         */
         friend istream& operator>>(istream&, const Artista&);
 
      

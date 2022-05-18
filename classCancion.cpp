@@ -188,4 +188,3 @@ void Cancion::resize(int dim_nueva){
     this-> v_Artista = nuevo;
 
 }
-}

@@ -2,7 +2,6 @@ all: limpiar compilar enlazar ejecutar
 
 limpiar:
 
-	
 
 compilar:
 
