@@ -48,7 +48,7 @@ void Cancion::operator=(const Cancion &c){
 int Cancion::getUtil_artista()const {
     return this->util_artista;
 }
-int Cancion::setUtil_artista(const int nueva){
+void Cancion::setUtil_artista(const int nueva){
     this->util_artista=nueva;
 }
 
@@ -113,13 +113,13 @@ Cancion::~Cancion(){
 }
 Cancion::Cancion(){
 
-    Artista* a=new Artista;
+    Artista** a= new Artista*[1];
     Tiempo t;
     t.setMinutos(0);
     t.setSegundos(0);
 
-    a->setIdArtista(0);
-    a->setNombreArtista("NULL");
+    //a->setIdArtista(0);
+    //a->setNombreArtista("NULL");
 
     if(debug==true)
     cout << RED <<  "Se invoca al Constructor Cancion."
@@ -129,18 +129,18 @@ Cancion::Cancion(){
     this->setNombreCancion("NULL");
     this->setDuracion(t);
 
-     this->v_Artista  =new Artista* [];
+     this->v_Artista  =a;
 
      for (int i=0; i< this->getUtil_artista();i++){
-         this->v_Artista[i]=a;
+             *this->v_Artista = *a;
      }
     this->setArtista(0,0);
-
+}
 void Cancion::resize(int dim_nueva){
 
-    Artista *nuevo= 0;
+    Artista** nuevo= 0;
      
-    nuevo=  =new Artista* [];
+    nuevo= new Artista*[dim_nueva+1];
     
     if(nuevo == 0){
         cerr << "No hay espacio suficiente. Se terminará la ejecución del programa." << endl;
@@ -151,14 +151,14 @@ void Cancion::resize(int dim_nueva){
     
     //se inicializa el nuevo vector a cero 
 
-    for(int i=0; i < dim_nueva +1; i++){
-        nuevo[i]=0.0;
+   // for(int i=0; i < dim_nueva +1; i++){
+        //nuevo[i]=;
          
         //cout << "(resise(inicializaciòn))nuevo ["  <<  i << "]: "  << nuevo[i] << endl; 
-    }
+   // }
     
     //si la nueva dimensiòn es menor que la dimension actual -1 (el grado maximo del polinomio)
-    if(dim_nueva < this ->getUtil_Artista()){
+    if(dim_nueva < this->getUtil_artista()){
        
         for(int i=0; i < dim_nueva +1; i++){
             
@@ -173,14 +173,14 @@ void Cancion::resize(int dim_nueva){
     else if(dim_nueva >= this->getUtil_artista()){
        // cout << "this->getMaxGrado() +1 " << this->getMaxGrado() << endl;
         //se copian los valores hasta el grado maximo (todos los valores del vector )
-        for(int i=0; i < this->getMaxGrado() +1; i++){
-            nuevo[i]= this-> getCoeficiente(i);
+       // for(int i=0; i < this->getMaxGrado() +1; i++){
+        //    nuevo[i]= this-> getCoeficiente(i);
            //cout << "(resise(dim_nueva>grado max))nuevo ["  <<  i << "]: "  << nuevo[i] << endl;
         
-        }
+       // }
     }
     //se elimina el antiguo vector 
-    delete [] this->v_Artistas; 
+    delete [] this->v_Artista; 
 
     //se establece el nuevo grado maximo 
     

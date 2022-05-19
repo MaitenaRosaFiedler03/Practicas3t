@@ -1,8 +1,11 @@
 
+#ifndef Cancion_H
+#define Cancion_H
 #include <iostream>
 #include "Tiempo.h"
 #include "Artista.h"
 using namespace std;
+class Artista;
 
 class Cancion{
     private:
@@ -134,5 +137,11 @@ class Cancion{
          */
          void operator=(const Cancion &c);
 
+        /**
+         * @brief 
+         * 
+         * @param dim_nueva 
+         */
         void resize(int dim_nueva);
 };
+#endif

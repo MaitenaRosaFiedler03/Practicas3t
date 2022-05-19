@@ -1,8 +1,10 @@
-
+#ifndef Artista_H
+#define Artista_H
 #include <iostream>
 #include <iomanip>
+//#include "Cancion.h"
 using namespace std;
-
+class Cancion;
 class Artista{
 
     private:
@@ -17,14 +19,14 @@ class Artista{
          * 
          * @param total 
          */
-        void setUtilCancionesCreadas(const int &total);
+        void setUtilCancionesCreadas(const int total);
 
         /**
          * @brief 
          * 
          * @param DIM_NUEV 
          */
-        void resize(const int &DIM_NUEV);
+        void resize(const int DIM_NUEV);
 
     public:
         /**
@@ -88,23 +90,24 @@ class Artista{
         /**
          * @brief Get the Canciones Artista object
          * 
-         * @return Cancion 
+         * @param i 
+         * @return Cancion* 
          */
-        Cancion* getCancionesArtista()const ;
+        Cancion* getCancionesArtista(int i)const ;
 
         /**
          * @brief Set the Canciones Artista object
          * 
          * @param nueva 
          */
-        void setCancionesArtista(const Cancion* nueva, int i);
+        void setCancionesArtista( Cancion* nueva, int i);
 
         /**
          * @brief 
          * 
          * @param Cancion 
          */
-        void eliminarCancionDeArtista(const int &Cancion);
+        void eliminarCancionDeArtista(const int Cancion);
 
         /**
          * @brief Construct a new Artista object
@@ -114,7 +117,7 @@ class Artista{
          * @param c 
          * @param i 
          */
-        Artista(const int &i, const string &nuevo, Cancion** c, const int &a);
+        Artista(const int id, const string nuevo, Cancion* c, const int a);
 
         /**
          * @brief Get the Util Canciones Creadas object
@@ -142,10 +145,7 @@ class Artista{
          * 
          * @return istream& 
          */
-        friend istream& operator>>(istream&, const Artista&);
-
-     
-
-        
+        friend istream& operator>>(istream&, const Artista&);   
 
 };
+#endif
