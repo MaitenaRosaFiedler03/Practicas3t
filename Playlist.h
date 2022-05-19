@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <string>
 #include "Cancion.h"
+
 class Playlist{
     private:
         unsigned int idPlaylist;
@@ -31,14 +32,14 @@ class Playlist{
          * @brief Construct a new Playlist object
          * 
          */
-        Playlist(const Playlist&);
+        Playlist(const Playlist &p);
 
         /**
          * @brief 
          * 
          * @param int 
          */
-        void setIDPlaylist(const unsigned int&);
+        void setIDPlaylist(const unsigned int i);
 
         /**
          * @brief 

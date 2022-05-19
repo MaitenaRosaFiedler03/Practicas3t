@@ -15,6 +15,7 @@ class Cancion{
         Tiempo duracion;
         int total_reproducciones;
         bool activo;
+        //declaro que v_artista serà una variable puntero a puntero 
         Artista** v_Artista;
 
     public:
@@ -64,7 +65,7 @@ class Cancion{
          * @param i 
          * @return Artista 
          */
-        Artista* getArtista(int i) const ;
+        //Artista* getArtista(int i) const ;
 
         /**
          * @brief Set the Artista object
@@ -143,5 +144,6 @@ class Cancion{
          * @param dim_nueva 
          */
         void resize(int dim_nueva);
+        
 };
 #endif

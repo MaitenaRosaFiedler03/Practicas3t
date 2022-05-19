@@ -14,19 +14,29 @@ class Vista{
         int util_artistas_sistema;
 
     public:
+        /**
+         * @brief Construct a new Vista object
+         * 
+         */
+        Vista();
 
+        /**
+         * @brief Destroy the Vista object
+         * 
+         */
+        ~Vista();
         /**
          * @brief Get the Usuarios sistema object
          * 
          * @return Usuario* 
          */
-        Usuario* getUsuarios_sistema()const;
+        Usuario getUsuarios_sistema(int i)const;
 
         /**
          * @brief Set the Usuarios sistema object
          * 
          */
-        void setUsuarios_sistema(const Usuario &user);
+        void setUsuarios_sistema(const Usuario &use, int i);
 
         /**
          * @brief Get the Util usuarios sistema object
@@ -47,7 +57,7 @@ class Vista{
          * 
          * @return Cancion* 
          */
-        Cancion* getCancionesSistema()const;
+        Cancion getCancionesSistema(int i)const;
 
         /**
          * @brief Set the Canciones Sistema object
@@ -55,7 +65,7 @@ class Vista{
          * @param c 
          * @param i 
          */
-        void setCancionesSistema(const Cancion* &c, int i);
+        void setCancionesSistema(const Cancion &c, int i);
 
         /**
          * @brief Get the Util Canciones Sistema object
@@ -76,7 +86,7 @@ class Vista{
          * 
          * @return Artista* 
          */
-        Artista* getArtistaSistema()const;
+        Artista getArtistaSistema(int i)const;
 
         /**
          * @brief Set the Artista Sistema object

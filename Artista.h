@@ -2,7 +2,7 @@
 #define Artista_H
 #include <iostream>
 #include <iomanip>
-//#include "Cancion.h"
+#include "Cancion.h"
 using namespace std;
 class Cancion;
 class Artista{
@@ -93,7 +93,7 @@ class Artista{
          * @param i 
          * @return Cancion* 
          */
-        Cancion* getCancionesArtista(int i)const ;
+        Cancion** getCancionesArtista(int i)const ;
 
         /**
          * @brief Set the Canciones Artista object

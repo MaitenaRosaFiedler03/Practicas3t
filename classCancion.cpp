@@ -62,9 +62,9 @@ void Cancion::setIdCancion(const unsigned int nuevo){
 
     this->idCancion=nuevo;
 }
-Artista* Cancion::getArtista(int i) const{
-    return this->v_Artista[i];
-}
+//Artista* Cancion::getArtista(int i) const{
+   // return this->v_Artista[i];
+//}
 void Cancion::setArtista( Artista *nuevo, int i ){
 
     if(debug==true)
@@ -113,6 +113,7 @@ Cancion::~Cancion(){
 }
 Cancion::Cancion(){
 
+    //creo una variable tipo puntero a puntero y digo que apuntarà a un vector de punteros 
     Artista** a= new Artista*[1];
     Tiempo t;
     t.setMinutos(0);
@@ -131,9 +132,10 @@ Cancion::Cancion(){
 
      this->v_Artista  =a;
 
-     for (int i=0; i< this->getUtil_artista();i++){
-             *this->v_Artista = *a;
-     }
+    //accedo a la direcciòn de memoria de v_artista y digo que ahora v_apuntarà al vector de punteros al que apunta la variable a
+    //ahora tantp v_artista como 'a' apuntaran al vector 'nuevo'
+    *this->v_Artista = *a;
+     
     this->setArtista(0,0);
 }
 void Cancion::resize(int dim_nueva){
