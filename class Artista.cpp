@@ -50,6 +50,7 @@ Artista::Artista(const Artista &a){
     this->setIdArtista(a.getIdArtista());
     this->setNombreArtista(a.getNombreArtista());
     this->setUtilCancionesCreadas(a.getUtilCancionesCreadas());
+
     this->canciones = new Cancion*[a.getUtilCancionesCreadas()+1];
 
     if (this->canciones == 0){
@@ -99,7 +100,7 @@ void Artista::setUtilCancionesCreadas(const int total){
     this->util_canciones=total;
 }
 
-Cancion* Artista::getCancionesArtista(int i)const {
+Cancion* Artista::getCancionesArtista(const int i)const{
     return this->canciones[i];
 }
 void Artista::setCancionesArtista(Cancion* nuevo, int i){

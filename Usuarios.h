@@ -1,3 +1,6 @@
+
+#ifndef Usuarios_H
+#define Usuarios_H
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -92,3 +95,4 @@ class Usuario{
 
 
 };
+#endif

@@ -1,8 +1,13 @@
 
+#ifndef Playlist_H
+#define Playlist_H
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include "Cancion.h"
+
+class Cancion;
+
 
 class Playlist{
     private:
@@ -32,7 +37,7 @@ class Playlist{
          * @brief Construct a new Playlist object
          * 
          */
-        Playlist(const Playlist &p);
+        Playlist(Playlist &p);
 
         /**
          * @brief 
@@ -52,7 +57,7 @@ class Playlist{
          * @brief Set the Nombre Playlist object
          * 
          */
-        void setNombrePlaylist(const string&);
+        void setNombrePlaylist(const string nueva);
 
         /**
          * @brief Get the Nombre Playlist object
@@ -110,7 +115,7 @@ class Playlist{
          * 
          * @return Playlist& 
          */
-        Playlist& operator=(const Playlist&);
+         Playlist& operator=(const Playlist&);
 
         /**
          * @brief Set the Duracion Playlist object
@@ -119,6 +124,5 @@ class Playlist{
          */
         void setDuracionPlaylist(const Tiempo &t);
 
-
-
 };
+#endif

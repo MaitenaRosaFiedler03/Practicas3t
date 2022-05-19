@@ -92,6 +92,6 @@ void Vista::setArtistaSistema(const Artista &a, int i){
 int Vista::getUtilArtistasSistema()const{
     return this->util_artistas_sistema;
 }
-void Vista::setUtilArtistasSistema(const int &util){
-    return this->util_artistas_sistema;
+void Vista::setUtilArtistasSistema(const int util){
+     this->util_artistas_sistema=util;
 }

@@ -1,8 +1,14 @@
 
+#ifndef Vista_H
+#define Vista_H
 #include <iostream>
 #include <iomanip>
 #include "Usuarios.h"
 #include "Cancion.h"
+class Cancion;
+class Artista;
+class Usuario;
+
 using namespace std;
 class Vista{
     private:
@@ -36,7 +42,7 @@ class Vista{
          * @brief Set the Usuarios sistema object
          * 
          */
-        void setUsuarios_sistema(const Usuario &use, int i);
+        void setUsuarios_sistema(const Usuario &user, int i);
 
         /**
          * @brief Get the Util usuarios sistema object
@@ -94,7 +100,7 @@ class Vista{
          * @param a 
          * @param i 
          */
-        void setArtistaSistema(const Artista* a, int i);
+        void setArtistaSistema(const Artista &a, int i);
 
         /**
          * @brief Get the Util Artistas Sistema object
@@ -107,7 +113,8 @@ class Vista{
          * @brief Set the Util Artistas Sistema object
          * 
          */
-        void setUtilArtistasSistema(const int &util);
+        void setUtilArtistasSistema(const int util);
 
 
 };
+#endif

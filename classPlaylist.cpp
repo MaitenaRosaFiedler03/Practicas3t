@@ -49,44 +49,8 @@ Playlist::~Playlist(){
     this->duracion.setSegundos(0);
 }
 
-/*Playlist::Playlist(const Playlist &p){
-
-    if(debug==true)
-    cout << RED <<  "Se invoca al Constructor por copia Playlist."
-         << "La dirección de this es: " << this << DEFAULT << endl;
-
-    Cancion** c = new Cancion*[1];
-    if(c==0){
-        cout << "No hay memoria en el sistema... cerrando programa " << endl;
-        exit(-1);
-    }
- 
-    this->idPlaylist=p.getIDPlaylist();
-    this->nombre=p.getNombrePlaylist();
-    for(int i=0 ;i < p.getUtilCancionesPlaylist();i++){
-        *this->canciones = p.getCancionPlaylist(i);
-    }
-    this->util_v_canciones=0;
-    this->duracion.setMinutos(0);
-    this->duracion.setSegundos(0);
-}*/
-void Playlist::setIDPlaylist(const unsigned int i){
-    this->idPlaylist=i;
-}
-unsigned int Playlist::getIDPlaylist()const {
-    return this->idPlaylist;
-}
-void Playlist::setNombrePlaylist(const string nueva){
-    this->nombre=nueva;
-}
-string Playlist::getNombrePlaylist() const {
-    return this->nombre;
-}
-void Playlist::agregarCancionEnPlaylist(Cancion* c){
-
-}
 Cancion* Playlist::getCancionPlaylist(const int &cancion){
-
+    return this->canciones[cancion];
 }
 void Playlist::eliminarCancionDePlaylist(const int &cancion){
 
@@ -103,6 +67,44 @@ Tiempo Playlist::getDuracionPlaylist(){
 void Playlist::setDuracionPlaylist(const Tiempo &t){
     this->duracion=t;
 }
-Playlist& Playlist::operator=(const Playlist &p){
+Playlist::Playlist( Playlist &p){
+
+    if(debug==true)
+    cout << RED <<  "Se invoca al Constructor por copia Playlist."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+
+    Cancion** c = new Cancion*[1];
+    if(c==0){
+        cout << "No hay memoria en el sistema... cerrando programa " << endl;
+        exit(-1);
+    }
+ 
+    this->idPlaylist=p.getIDPlaylist();
+    this->nombre=p.getNombrePlaylist();
+    this->util_v_canciones=p.getUtilCancionesPlaylist();
+    for(int i=0 ;i < this->getUtilCancionesPlaylist();i++){
+        *this->canciones = p.getCancionPlaylist(i);
+    }
+    this->util_v_canciones=0;
+    this->duracion.setMinutos(0);
+    this->duracion.setSegundos(0);
+}
+
+void Playlist::setIDPlaylist(const unsigned int i){
+    this->idPlaylist=i;
+}
+unsigned int Playlist::getIDPlaylist()const {
+    return this->idPlaylist;
+}
+void Playlist::setNombrePlaylist(const string nueva){
+    this->nombre=nueva;
+}
+string Playlist::getNombrePlaylist() const {
+    return this->nombre;
+}
+void Playlist::agregarCancionEnPlaylist(Cancion* c){
 
 }
+/*Playlist& Playlist::operator=(const Playlist &p){
+    return ;
+}*/

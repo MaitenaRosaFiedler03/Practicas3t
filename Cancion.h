@@ -65,7 +65,7 @@ class Cancion{
          * @param i 
          * @return Artista 
          */
-        //Artista* getArtista(int i) const ;
+        Artista* getArtista(int i) const ;
 
         /**
          * @brief Set the Artista object

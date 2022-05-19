@@ -5,6 +5,7 @@
 #include "Cancion.h"
 using namespace std;
 class Cancion;
+
 class Artista{
 
     private:
@@ -93,7 +94,7 @@ class Artista{
          * @param i 
          * @return Cancion* 
          */
-        Cancion** getCancionesArtista(int i)const ;
+        Cancion* getCancionesArtista(const int i)const ;
 
         /**
          * @brief Set the Canciones Artista object
@@ -146,6 +147,7 @@ class Artista{
          * @return istream& 
          */
         friend istream& operator>>(istream&, const Artista&);   
-
+        
+        
 };
 #endif
