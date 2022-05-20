@@ -133,7 +133,7 @@ class Artista{
          * 
          * @return Artista& 
          */
-        Artista& operator=(const Artista&);
+        Artista& operator=(const Artista &i);
 
         /**
          * @brief 

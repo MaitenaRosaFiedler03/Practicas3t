@@ -86,9 +86,9 @@ void Vista::setUtilCancionesSistema(const int i){
 Artista Vista::getArtistaSistema(int i )const{
     return this->artistas_sistema[i];
 }
-void Vista::setArtistaSistema(const Artista &a, int i){
+/*void Vista::setArtistaSistema(const Artista &a, int i){
     this->artistas_sistema[i]=a;
-}
+}*/
 int Vista::getUtilArtistasSistema()const{
     return this->util_artistas_sistema;
 }

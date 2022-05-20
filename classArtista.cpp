@@ -97,6 +97,9 @@ void Artista::setUtilCancionesCreadas(const int total){
 
     this->util_canciones=total;
 }
+int Artista::getUtilCancionesCreadas() const {
+    return this->util_canciones;
+}
 
 Cancion* Artista::getCancionArtista(const int i) const{
 
@@ -132,5 +135,8 @@ Artista:: Artista(const int id, const string nuevo, Cancion* c, const int a){
     for(int i=0; i <= this->getUtilCancionesCreadas() ; i++){}
       // this->canciones[i]=c->
 }
+/*Artista Artista::operator=(const Artista &i){
+    return *this->canciones;
+}*/
 
 
