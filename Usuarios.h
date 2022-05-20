@@ -43,32 +43,32 @@ class Usuario{
          * 
          * @param int 
          */
-        void setIDUsuario(const unsigned int&);
+        void setIDUsuario(const unsigned int id);
 
         /**
          * @brief Set the Activado object
          * 
          */
-        void setActivado(const bool&);
+        void setActivado(const bool activado);
 
         /**
          * @brief Set the Login object
          * 
          */
-        void setLogin(const string&);
+        void setLogin(const string login);
 
         /**
          * @brief 
          * 
          */
-        void setPassword(const string&);
+        void setPassword(const string nuevo);
 
         /**
          * @brief 
          * 
          * @return int 
          */
-        int getIDUsuario();
+        unsigned int getIDUsuario() const;
 
         /**
          * @brief Get the Activado object
@@ -76,21 +76,22 @@ class Usuario{
          * @return true 
          * @return false 
          */
-        bool getActivado();
+        bool getActivado()  const;
 
         /**
          * @brief Get the Login object
          * 
          * @return string 
          */
-        string getLogin();
+        string getLogin()const;
 
         /**
          * @brief Get the Password object
          * 
          * @return string 
          */
-        string getPassword();
-
+        string getPassword() const ;
+        
+       
 };
 #endif

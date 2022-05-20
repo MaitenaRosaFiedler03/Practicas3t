@@ -63,5 +63,11 @@ class Tiempo{
      * @return Tiempo devuelve el tiempo en el formato 
      */
     void convertirTiempo();
-  
+
+    /**
+     * @brief 
+     * 
+     * @param t 
+     */
+    void operator=(const Tiempo &t);
 };

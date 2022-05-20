@@ -49,6 +49,10 @@ int Cancion::getUtil_artista()const {
     return this->util_artista;
 }
 void Cancion::setUtil_artista(const int nueva){
+
+    if(debug==true)
+        cout << RED << "Estableciendo util artista" << "La dirección de this es: " << this << RESET << endl;
+
     this->util_artista=nueva;
 }
 
@@ -96,9 +100,17 @@ bool Cancion::getActivo() const{
     return this->activo;
 }
 void Cancion::setActivo(const bool activo){
+
+    if(debug==true)
+        cout << RED << "Estableciendo idCancion" << "La dirección de this es: " << this << RESET << endl;
+
     this->activo=activo;
 }
 void Cancion::setNombreCancion(const string nuevo){
+
+    if(debug==true)
+        cout << RED << "Estableciendo nombre de la canciòn " << "La dirección de this es: " << this << RESET << endl;
+
     this->nombre=nuevo;
 }
 string Cancion::getNombreCancion()const{
@@ -109,6 +121,20 @@ Cancion::~Cancion(){
     if(debug==true)
     cout << RED <<  "Se invoca al Destructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
+
+    if(this!= 0){
+        this->activo=false;
+        this->duracion.setMinutos(0);
+        this->duracion.setSegundos(0);
+        this->idCancion=0;
+        this->nombre="NULL";
+        this->util_artista=0;
+        this->total_reproducciones=0;
+        delete this->v_Artista ;
+    }
+    else 
+        cout << RED <<  "El elemento con la dirección de this es: " << this << " ya fue eliminado previamente " << DEFAULT << endl;
+
 
 }
 Cancion::Cancion(){
@@ -129,10 +155,6 @@ Cancion::Cancion(){
     
     t.setMinutos(0);
     t.setSegundos(0);
-
-    //a->setIdArtista(0);
-    //a->setNombreArtista("NULL");
-
     
     this->setIdCancion(0);
     this->setNombreCancion("NULL");
@@ -144,9 +166,12 @@ Cancion::Cancion(){
     //ahora tantp v_artista como 'a' apuntaran al vector 'nuevo'
     *this->v_Artista = *a;
      
-    this->setArtista(0,0);
 }
 void Cancion::resize(int dim_nueva){
+
+    if(debug==true)
+    cout << RED <<  "Se invoca al Constructor Cancion."
+         << "La dirección de this es: " << this << DEFAULT << endl;
 
     Artista** nuevo= 0;
      
@@ -161,12 +186,6 @@ void Cancion::resize(int dim_nueva){
     
     //se inicializa el nuevo vector a cero 
 
-   // for(int i=0; i < dim_nueva +1; i++){
-        //nuevo[i]=;
-         
-        //cout << "(resise(inicializaciòn))nuevo ["  <<  i << "]: "  << nuevo[i] << endl; 
-   // }
-    
     //si la nueva dimensiòn es menor que la dimension actual -1 (el grado maximo del polinomio)
     if(dim_nueva < this->getUtil_artista()){
        
@@ -183,11 +202,11 @@ void Cancion::resize(int dim_nueva){
     else if(dim_nueva >= this->getUtil_artista()){
        // cout << "this->getMaxGrado() +1 " << this->getMaxGrado() << endl;
         //se copian los valores hasta el grado maximo (todos los valores del vector )
-       // for(int i=0; i < this->getMaxGrado() +1; i++){
-        //    nuevo[i]= this-> getCoeficiente(i);
+        for(int i=0; i < this->getUtil_artista() +1; i++){
+            nuevo[i]= this-> getArtista(i);
            //cout << "(resise(dim_nueva>grado max))nuevo ["  <<  i << "]: "  << nuevo[i] << endl;
         
-       // }
+    }
     }
     //se elimina el antiguo vector 
     delete [] this->v_Artista; 
@@ -198,3 +217,67 @@ void Cancion::resize(int dim_nueva){
     this-> v_Artista = nuevo;
 
 }
+Cancion::Cancion(bool activada,unsigned int id, Artista **a,string titulo, Tiempo duracion, unsigned int total_reproducciones){
+  
+    if(debug==true)
+    cout << RED <<  "Se invoca al Constructor por parametro de Cancion."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+ 
+
+    if(a==0){
+        cout << "No hay memoria en el sistema... cerrando programa " << endl;
+        exit(-1);
+    }
+
+    
+    this->setIdCancion(id);
+    this->setNombreCancion(titulo);
+    this->setDuracion(duracion);
+    this->setTotalRepro(total_reproducciones);
+
+    this->v_Artista  =a;
+
+    //accedo a la direcciòn de memoria de v_artista y digo que ahora v_apuntarà al vector de punteros al que apunta la variable a
+    //ahora tantp v_artista como 'a' apuntaran al vector 'nuevo'
+    *this->v_Artista = *a;
+    
+}
+istream& operator>>(istream &flujo,  Cancion &c){
+
+    unsigned int id; 
+    string nombre; 
+    int total;
+    
+        cout << "Id Cancion: ";
+        flujo >> id;
+
+        cout << "Nombre Cancion: ";
+        flujo >> nombre; 
+
+        cout << "Reproducciones: ";
+        flujo >> total; 
+
+    return flujo;
+    
+}
+ostream& operator<<(ostream &flujo, const Cancion &c){
+    
+    if(c.getActivo()==true){
+
+        cout << "Id Cancion: ";
+        flujo << c.getIdCancion() << endl;
+
+        cout << "Nombre Canciòn : ";
+        flujo << c.getNombreCancion() << endl; 
+
+        cout << "Reproducciones: ";
+        flujo << c.getTotalRepro() << endl; 
+
+        cout << "Duracion: ";
+        //flujo  << c.getDuracion() << endl; 
+
+    }
+    return flujo;
+}
+
+

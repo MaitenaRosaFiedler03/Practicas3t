@@ -133,21 +133,21 @@ class Artista{
          * 
          * @return Artista& 
          */
-        Artista& operator=(const Artista &i);
+        void operator=(const Artista &i);
 
         /**
          * @brief 
          * 
          * @return ostream& 
          */
-        friend ostream& operator<<(ostream&, const Artista&);
+        friend ostream& operator<<(ostream &flujo, const Artista &a);
 
         /**
          * @brief 
          * 
          * @return istream& 
          */
-        friend istream& operator>>(istream&, const Artista&);   
+        friend istream& operator>>(istream &flujo,  Artista &a);   
         
         
 };

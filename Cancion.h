@@ -21,13 +21,13 @@ class Cancion{
     public:
 
         /**
-         * @brief Construct a new Cancion object
+         * @brief Construye un nuevo objeto Cancion , se crea su memoria dinamica dentro y se establece todo a NULL o cero 
          * 
          */
         Cancion();
 
         /**
-         * @brief Destroy the Cancion object
+         * @brief elimina el objeto Cancion, si ya fue eliminado no lo elimina de la memoria 
          * 
          */
         ~Cancion();
@@ -144,6 +144,41 @@ class Cancion{
          * @param dim_nueva 
          */
         void resize(int dim_nueva);
+
         
+        /**
+         * @brief Construct a new Cancion object
+         * 
+         * @param activada 
+         * @param id 
+         * @param titulo 
+         * @param duracion 
+         * @param total_reproducciones 
+         */
+        Cancion(bool activada, unsigned int id, Artista **a, string titulo, Tiempo duracion, unsigned int total_reproducciones);
+
+        /**
+         * @brief 
+         * 
+         */
+        void imprimirArtistas();
+
+        /**
+         * @brief 
+         * 
+         * @param flujo 
+         * @param a 
+         * @return istream& 
+         */
+        friend istream& operator>>(istream &flujo,  Cancion &c);
+
+        /**
+         * @brief 
+         * 
+         * @param flujo 
+         * @param a 
+         * @return ostream& 
+         */
+        friend ostream& operator<<(ostream &flujo, const Cancion &c);
 };
 #endif

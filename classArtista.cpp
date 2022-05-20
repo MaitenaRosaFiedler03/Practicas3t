@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <string.h>
 #include "Artista.h"
 using namespace std;
 
@@ -135,8 +135,76 @@ Artista:: Artista(const int id, const string nuevo, Cancion* c, const int a){
     for(int i=0; i <= this->getUtilCancionesCreadas() ; i++){}
       // this->canciones[i]=c->
 }
-/*Artista Artista::operator=(const Artista &i){
-    return *this->canciones;
-}*/
+void Artista::operator=(const Artista &i){
+    
+    cout << RED <<  "Se invoca al operador=."
+         << "La dirección de this es: " << this << DEFAULT << endl;
 
+    if(this->canciones==0){
+        this->canciones = new Cancion*[i.getUtilCancionesCreadas()] ;
 
+    }
+
+    if (this->canciones == 0){
+            cerr << "NO hay memoria disponible... Cerrando programa" << endl;
+            exit(-1);
+    }
+    this->activado=i.getActivado();
+    this->idArtista=i.getIdArtista();
+    this->nombre=i.getNombreArtista();
+    this->util_canciones= i.getUtilCancionesCreadas();
+
+    for(int b=0; b < this->getUtilCancionesCreadas();b++){
+        this->canciones[b]=i.getCancionArtista(b);
+    }
+    
+
+}
+ostream& operator<<(ostream &flujo, const Artista &a){
+  
+    if(a.getActivado()==true){
+    
+        cout << "Id Artista: ";
+
+        flujo << a.getIdArtista() << endl;
+
+        cout << "Nombre artista: ";
+
+        flujo << a.getNombreArtista() << endl;
+
+        cout << "Canciones del artista : " << endl;
+
+        /*for(int i=0; i < a.getUtilCancionesCreadas();i++){
+            flujo << *(a.getCancionArtista(i));
+        }*/
+    }
+
+   return flujo;
+}
+
+istream& operator>>(istream &flujo,  Artista &a){
+    
+    unsigned int id;
+    string nombre;
+
+    if(a.getActivado()==true){
+
+        cout << "Id Artista: ";
+
+        flujo >> id;
+
+        cout << "Nombre artista: ";
+
+        flujo >> nombre;
+
+        cout << "Canciones del artista : " << endl;
+        
+        /*for(int i=0; i < a.getUtilCancionesCreadas();i++){
+            flujo << *(a.getCancionArtista(i));
+        }*/
+
+        a.setIdArtista(id);
+        a.setNombreArtista(nombre);
+    }
+    return flujo;
+}
