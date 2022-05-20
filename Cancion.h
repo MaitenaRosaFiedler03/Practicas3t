@@ -1,6 +1,6 @@
 
-#ifndef Cancion_H
-#define Cancion_H
+#ifndef CANCION_H
+#define CANCION_H
 #include <iostream>
 #include "Tiempo.h"
 #include "Artista.h"

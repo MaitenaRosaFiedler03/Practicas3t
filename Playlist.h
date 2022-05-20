@@ -1,6 +1,6 @@
 
-#ifndef Playlist_H
-#define Playlist_H
+#ifndef PLAYLIST_H
+#define PLAYLIST_H
 #include <iostream>
 #include <iomanip>
 #include <string>

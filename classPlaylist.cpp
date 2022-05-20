@@ -11,11 +11,11 @@ using namespace std;
 #define YELLOW  "\033[33m"      /*MENSAJE DE ERROR*/
 #define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
 
-bool debug=true;
+bool dEbug=true;
 
 Playlist::Playlist(){
 
-    if(debug==true)
+    if(dEbug==true)
     cout << RED <<  "Se invoca al Constructor Playlist."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
@@ -36,7 +36,7 @@ Playlist::Playlist(){
 
 Playlist::~Playlist(){
 
-    if(debug==true)
+    if(dEbug==true)
     cout << RED <<  "Se invoca al Deconstructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
@@ -69,7 +69,7 @@ void Playlist::setDuracionPlaylist(const Tiempo &t){
 }
 Playlist::Playlist( Playlist &p){
 
-    if(debug==true)
+    if(dEbug==true)
     cout << RED <<  "Se invoca al Constructor por copia Playlist."
          << "La dirección de this es: " << this << DEFAULT << endl;
 

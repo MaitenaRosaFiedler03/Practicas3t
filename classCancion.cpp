@@ -62,9 +62,9 @@ void Cancion::setIdCancion(const unsigned int nuevo){
 
     this->idCancion=nuevo;
 }
-//Artista* Cancion::getArtista(int i) const{
-   // return this->v_Artista[i];
-//}
+Artista* Cancion::getArtista(int i)const{
+   return this->v_Artista[i];
+}
 void Cancion::setArtista( Artista *nuevo, int i ){
 
     if(debug==true)
@@ -113,19 +113,27 @@ Cancion::~Cancion(){
 }
 Cancion::Cancion(){
 
+    if(debug==true)
+    cout << RED <<  "Se invoca al Constructor Cancion."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+
+
     //creo una variable tipo puntero a puntero y digo que apuntarà a un vector de punteros 
     Artista** a= new Artista*[1];
+
+    if(a==0){
+        cout << "No hay memoria en el sistema... cerrando programa " << endl;
+        exit(-1);
+    }
     Tiempo t;
+    
     t.setMinutos(0);
     t.setSegundos(0);
 
     //a->setIdArtista(0);
     //a->setNombreArtista("NULL");
 
-    if(debug==true)
-    cout << RED <<  "Se invoca al Constructor Cancion."
-         << "La dirección de this es: " << this << DEFAULT << endl;
-
+    
     this->setIdCancion(0);
     this->setNombreCancion("NULL");
     this->setDuracion(t);

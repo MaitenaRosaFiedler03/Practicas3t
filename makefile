@@ -1,7 +1,8 @@
 all: limpiar compilar enlazar ejecutar
 
 limpiar:
-
+	rm *.o
+	echo "hola"
 
 compilar:
 
@@ -14,3 +15,4 @@ enlazar:
 ejecutar:
 
 	./practica
+	

@@ -11,11 +11,11 @@ using namespace std;
 #define YELLOW  "\033[33m"      /*MENSAJE DE ERROR*/
 #define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
 
-bool debug=true;
+
 
 Vista:: Vista(){
 
-    if(debug==true)
+    //if(debug==true)
     cout << RED <<  "Se invoca al Constructor Vista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
@@ -46,7 +46,7 @@ Vista:: Vista(){
 }
 Vista::~Vista(){
 
-    if(debug==true)
+   // if(debug==true)
     cout << RED <<  "Se invoca al Destructor Vista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 

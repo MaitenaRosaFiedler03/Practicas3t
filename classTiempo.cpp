@@ -12,25 +12,25 @@ using namespace std;
 #define YELLOW  "\033[33m"      /*MENSAJE DE ERROR*/
 #define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
 
-bool debug=true;
+bool Debug=true;
 
 
 Tiempo::Tiempo(){
 
-    if(debug==true)
+    if(Debug==true)
         cout << RED <<  "Se invoca al Constructor Tiempo." << "La dirección de this es: " << this << DEFAULT << endl;
 
     this->segundos=0;
     this->minutos=0;
 }
 Tiempo::~Tiempo (){
-    if(debug==true)
+    if(Debug==true)
     cout << RED <<  "Se invoca al Destructor del Tiempo." << "La dirección de this es: " << this << DEFAULT << endl;
 
 }
 Tiempo::Tiempo(const int minutos, const int segundos){
 
-    if(debug==true)
+    if(Debug==true)
      cout << RED <<  "Se invoca al Constructor por copia Tiempo."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
@@ -39,7 +39,7 @@ Tiempo::Tiempo(const int minutos, const int segundos){
 }
 void Tiempo::setSegundos(const int segundos){
 
-    if(debug==true)
+    if(Debug==true)
         cout << RED << "Estableciendo segundos"  << "La dirección de this es: " << this << RESET << endl;
 
     this->segundos=segundos;
@@ -49,7 +49,7 @@ int Tiempo::getSegundos()const{
 }
 void Tiempo::setMinutos(const int minutos){
 
-    if(debug==true)
+    if(Debug==true)
         cout << RED << "Estableciendo minutos" << "La dirección de this es: " << this << RESET << endl;
 
 
@@ -75,16 +75,5 @@ int  minutos=0, var=0, segundos;
 
     this->setMinutos(minutos);
     this->setSegundos(segundos);
-    
-    if(minutos <= 9){
-        cout << "0" << minutos; 
-    }
-    
-    if(segundos <= 9){ 
-        cout << ":0" << segundos ; 
-    }
-    if(segundos > 9){ 
-        cout << ":" << segundos ; 
-    }
  
 }

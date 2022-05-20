@@ -1,11 +1,11 @@
 
-#ifndef Usuarios_H
-#define Usuarios_H
+#ifndef USUARIOS_H
+#define USUARIOS_H
 #include <iostream>
 #include <iomanip>
 using namespace std;
 class Usuario{
-    private:
+    protected:
 
         unsigned int id;
         bool activado;
@@ -24,13 +24,13 @@ class Usuario{
          * @brief Construct a new Usuario object
          * 
          */
-        Usuario(const Usuario&);
+        Usuario(const Usuario &u);
 
         /**
          * @brief Construct a new Usuario object
          * 
          */
-        Usuario(const int&, const bool&, const string&, const string&);
+        Usuario(const int id, const bool activo, const string login , const string contra);
 
         /**
          * @brief 
@@ -91,8 +91,6 @@ class Usuario{
          * @return string 
          */
         string getPassword();
-
-
 
 };
 #endif

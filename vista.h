@@ -1,6 +1,6 @@
 
-#ifndef Vista_H
-#define Vista_H
+#ifndef VISTA_H
+#define VISTA_H
 #include <iostream>
 #include <iomanip>
 #include "Usuarios.h"

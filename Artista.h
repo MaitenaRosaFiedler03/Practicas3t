@@ -1,8 +1,9 @@
-#ifndef Artista_H
-#define Artista_H
+
+#ifndef ARTISTA_H
+#define ARTISTA_H
 #include <iostream>
 #include <iomanip>
-#include "Cancion.h"
+
 using namespace std;
 class Cancion;
 
@@ -94,14 +95,14 @@ class Artista{
          * @param i 
          * @return Cancion* 
          */
-        Cancion* getCancionesArtista(const int i)const ;
-
+        Cancion* getCancionArtista(const int i) const;
+       
         /**
          * @brief Set the Canciones Artista object
          * 
          * @param nueva 
          */
-        void setCancionesArtista( Cancion* nueva, int i);
+        void setCancionesArtista(Cancion* nueva, int i);
 
         /**
          * @brief 
