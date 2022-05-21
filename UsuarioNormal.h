@@ -20,14 +20,14 @@ class Usuario_comun : public Usuario{
          * 
          * @param DIM_NUEVA 
          */
-        resizeVectorCanciones(const int DIM_NUEVA);
+        void resizeVectorCanciones(const int DIM_NUEVA);
 
         /**
          * @brief Construct a new resize Vector Playlist object
          * 
          * @param DIM_NUEVA 
          */
-        resizeVectorPlaylist(const int DIM_NUEVA);
+        void resizeVectorPlaylist(const int DIM_NUEVA);
 
     public: 
 
@@ -51,7 +51,7 @@ class Usuario_comun : public Usuario{
         ~Usuario_comun();
 
         /**
-         * @brief 
+         * @brief se agrega una cancion al vector de canciones que 
          * 
          */
         void agregarCancionAUsuario(Cancion* cancion);
@@ -114,12 +114,22 @@ class Usuario_comun : public Usuario{
         int getUtilPlaylistUsuario()const;
 
         /**
-         * @brief Get the Util Playlist Usuario object
+         * @brief 
          * 
-         * @return int 
+         * @param flujo 
+         * @param u 
+         * @return istream& 
          */
-        int getUtilPlaylistUsuario()const; 
+       friend istream& operator>>(istream &flujo,  Usuario_comun &u);
 
+        /**
+         * @brief 
+         * 
+         * @param flujo 
+         * @param u 
+         * @return ostream& 
+         */
+       friend ostream& operator<<(ostream &flujo, const Usuario_comun &u);
         
 };
 #endif

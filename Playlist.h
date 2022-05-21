@@ -124,8 +124,29 @@ class Playlist{
          */
         void setDuracionPlaylist(const Tiempo &t);
 
+        /**
+         * @brief 
+         * 
+         * @param flujo 
+         * @param p 
+         * @return ostream& 
+         */
         friend ostream& operator<<(ostream &flujo, const Playlist &p);
-
+        
+        /**
+         * @brief 
+         * 
+         * @param flujo 
+         * @param p 
+         * @return istream& 
+         */
         friend istream& operator>>(istream &flujo,  Playlist &p);
+
+        /**
+         * @brief 
+         * 
+         * @return Tiempo 
+         */
+        Tiempo calcularDuracionPlaylist();
 };      
 #endif

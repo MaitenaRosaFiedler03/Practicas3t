@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "Cancion.h"
+#include "Artista.h"
 
 using namespace std;
 
@@ -160,6 +161,7 @@ Cancion::Cancion(){
     this->setIdCancion(0);
     this->setNombreCancion("NULL");
     this->setDuracion(t);
+    this->setUtil_artista(1);
 
      this->v_Artista  =a;
 
@@ -168,15 +170,13 @@ Cancion::Cancion(){
     *this->v_Artista = *a;
      
 }
-void Cancion::resize(int dim_nueva){
+void Cancion::resize(const int dim_nueva){
 
     if(debug==true)
     cout << RED <<  "Se invoca al Constructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
-    Artista** nuevo= 0;
-     
-    nuevo= new Artista*[dim_nueva+1];
+    Artista** nuevo= new Artista*[dim_nueva+1];
     
     if(nuevo == 0){
         cerr << "No hay espacio suficiente. Se terminará la ejecución del programa." << endl;
@@ -187,27 +187,21 @@ void Cancion::resize(int dim_nueva){
     
     //se inicializa el nuevo vector a cero 
 
-    //si la nueva dimensiòn es menor que la dimension actual -1 (el grado maximo del polinomio)
     if(dim_nueva < this->getUtil_artista()){
        
         for(int i=0; i < dim_nueva +1; i++){
             
             nuevo[i]= this->getArtista(i);
-            // cout << "(resise(dim<gradoM))nuevo ["  <<  i << "]: "  << nuevo[i] << endl; 
-           
+            
         }        
 
     }
 
-    //si la nueva dimensiòn es mayor que la dimensiòn -1 (el grado maximo del polinomio )
     else if(dim_nueva >= this->getUtil_artista()){
-       // cout << "this->getMaxGrado() +1 " << this->getMaxGrado() << endl;
-        //se copian los valores hasta el grado maximo (todos los valores del vector )
+ 
         for(int i=0; i < this->getUtil_artista() +1; i++){
             nuevo[i]= this-> getArtista(i);
-           //cout << "(resise(dim_nueva>grado max))nuevo ["  <<  i << "]: "  << nuevo[i] << endl;
-        
-    }
+        }
     }
     //se elimina el antiguo vector 
     delete [] this->v_Artista; 
@@ -243,12 +237,40 @@ Cancion::Cancion(bool activada,unsigned int id, Artista **a,string titulo, Tiemp
     *this->v_Artista = *a;
     
 }
+ostream& operator<<(ostream &flujo, const Cancion &c){
+    
+    if(c.getActivo()==true){
+
+        cout << "Id Cancion: ";
+        flujo << c.getIdCancion() << endl;
+
+        cout << "Nombre Canciòn : ";
+        flujo << c.getNombreCancion() << endl; 
+
+        cout << "Reproducciones: ";
+        flujo << c.getTotalRepro() << endl; 
+
+        cout << "Duracion: ";
+        flujo  << c.getDuracion() << endl; 
+
+        cout << "util: " << c.getUtil_artista() << endl;
+        cout << "Artistas :" << endl;
+
+        
+        for(int i=0; i < c.getUtil_artista(); i++){
+            flujo << c.getArtista(i)->getNombreArtista();
+        }
+         
+    }
+    return flujo;
+}
 istream& operator>>(istream &flujo,  Cancion &c){
 
     unsigned int id; 
     string nombre; 
     int total;
     Tiempo duracion;
+    int artista=0;
     
         cout << "Id Cancion: ";
         while(!(flujo >> id)){
@@ -272,53 +294,42 @@ istream& operator>>(istream &flujo,  Cancion &c){
         }
 
         cout << "Duracion: " << endl;
-         while(!(flujo >> duracion)){
-        cin.clear();
-        cin.ignore();
-        cout << "Ingrese numero positivo " << endl; 
-    }
+        while(!(flujo >> duracion)){
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese numero positivo " << endl; 
+        }   
+
+        cout << "util: " << c.getUtil_artista() << endl;
+        do{
+            artista=0;
+
+            cout << "Eliga el Artista de la cancion, para terminar pulse -1 : " << endl; 
+
+            for(int i=0; i < c.getUtil_artista(); i++){
+               // cout << "[" << i << "] ";
+                cout  <<  c.getArtista(i)->getNombreArtista() << endl; 
+            }
+
+            flujo >> artista;
+
+            if(artista != -1){
+                c.setArtista(c.getArtista(artista),c.getUtil_artista()-1);
+            }
+            artista=c.getUtil_artista();
+            c.setUtil_artista(artista++);
+        }while(artista!= -1);
 
         c.setIdCancion(id);
         c.setNombreCancion(nombre);
-        c.setUtil_artista(2);
+        c.setUtil_artista(1);
+        
         c.setTotalRepro(total);
         c.setDuracion(duracion);
 
     return flujo;
     
 }
-ostream& operator<<(ostream &flujo, const Cancion &c){
-    
-    if(c.getActivo()==true){
 
-        cout << "Id Cancion: ";
-        flujo << c.getIdCancion() << endl;
 
-        cout << "Nombre Canciòn : ";
-        flujo << c.getNombreCancion() << endl; 
-
-        cout << "Reproducciones: ";
-        flujo << c.getTotalRepro() << endl; 
-
-        cout << "Duracion: ";
-        flujo  << c.getDuracion() << endl; 
-
-        cout << "Artistas :" << endl;
-
-        //c.printVectorArtistas();
-         
-    }
-    return flujo;
-}
-void Cancion::printVectorArtistas()const {
-
-    cout << "Imprimir vector artista" << endl; 
-    cout << "util artista: " << this->getUtil_artista() << endl; 
-
-    for(int i =0; i < this->getUtil_artista();i++){
-          
-            cout << *this->v_Artista[i];
-
-    }
-}
 

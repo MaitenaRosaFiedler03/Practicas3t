@@ -4,23 +4,24 @@
 #include "Artista.h"
 #include "vista.h"
 #include "Usuarios.h"
-#include "Playlist.h"
-
-
-
+#include "UsuarioNormal.h"
 #include "Playlist.h"
 using namespace std;
 
 int main (){
-    Cancion a; 
+    Cancion c; 
     Playlist p;
-    Artista c;
+    Artista a;
 
-   
+   c.setActivo(true);
+   a.setActivado(true);
+    cin >> c;
+
     cin >> a;
-    cout << a; 
+    c.setArtista(&a,0);
 
-    /*
-    cin >> p ; 
-    cout << p; */
+
+    cout << c << endl;  
+
+
 }

@@ -107,18 +107,18 @@ istream& operator>>(istream &flujo,  Tiempo &t){
 
     cout << "Introduzca los minutos: ";
     
-    while(!(flujo >> min)){
+    while(!(flujo >> min) || (min > 20)){
             cin.clear();
             cin.ignore();
-            cout << "Ingrese numero positivo " << endl; 
+            cout << "Ingrese numero valido " << endl; 
         }
 
     cout << "Introduzca los segundos: ";
 
-     while(!(flujo >> seg)){
+     while(!(flujo >> seg) || (seg > 59)){
         cin.clear();
         cin.ignore();
-        cout << "Ingrese numero positivo " << endl; 
+        cout << "Ingrese numero valido " << endl; 
     }
 
     

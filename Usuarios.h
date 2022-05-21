@@ -107,7 +107,7 @@ class Usuario{
          * @param u 
          * @return ostream& 
          */
-        friend ostream& operator<<(ostream &flujo, const Usuario &u);
+        virtual void printUsuario() const ;
 
         /**
          * @brief 

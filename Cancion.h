@@ -143,7 +143,7 @@ class Cancion{
          * 
          * @param dim_nueva 
          */
-        void resize(int dim_nueva);
+        void resize(const int dim_nueva);
 
         
         /**
@@ -157,11 +157,7 @@ class Cancion{
          */
         Cancion(bool activada, unsigned int id, Artista **a, string titulo, Tiempo duracion, unsigned int total_reproducciones);
 
-        /**
-         * @brief 
-         * 
-         */
-        void imprimirArtistas();
+        
 
         /**
          * @brief 
@@ -181,10 +177,5 @@ class Cancion{
          */
         friend ostream& operator<<(ostream &flujo, const Cancion &c);
 
-        /**
-         * @brief 
-         * 
-         */
-        void printVectorArtistas() const;
 };
 #endif

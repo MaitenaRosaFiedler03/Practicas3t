@@ -10,7 +10,7 @@ using namespace std;
 #define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
 
 Usuario::Usuario(){
-    cout << RED <<  "Se invoca al Destructor Usuario."
+    cout << RED <<  "Se invoca al Constructor Usuario."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
 
@@ -110,15 +110,14 @@ void Usuario::operator=(const Usuario &u){
     this->password=u.password;
     
 }
-ostream& operator<<(ostream &flujo, const Usuario &u){
+void Usuario::printUsuario()const {
 
     cout << "Id usuario: ";
-    flujo << u.getIDUsuario() << endl; 
+    cout << this->getIDUsuario() << endl; 
 
     cout << "Nombre de Usuario: " ; 
-    flujo << u.getLogin() << endl; 
+    cout << this->getLogin() << endl; 
 
-    return flujo;
 }
 istream& operator>>(istream &flujo,  Usuario &u){
 

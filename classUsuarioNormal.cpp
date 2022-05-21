@@ -86,3 +86,44 @@ Usuario_comun::~Usuario_comun(){
     this->playlists_usuario=0;
 
 }
+void Usuario_comun::agregarCancionAUsuario(Cancion* cancion){
+        this->canciones_usuario[this->getUtilCancionesUsuario()-1]= cancion;
+}
+void Usuario_comun::eliminarCancionDeUsuario(const int cancion){
+
+}
+void Usuario_comun::agregarPlaylistAUsuario(const Playlist &p){
+    //resize 
+}
+void Usuario_comun::eliminarPlaylistDeUsuario(const int play){
+
+}
+void Usuario_comun::setUtilPlaylistUsuario(const int util){
+    this->util_playlists_usuario=util;
+}
+Cancion* Usuario_comun::getCancionUsuario(const int valor) const{
+
+    return this->canciones_usuario[valor];
+}
+int Usuario_comun::getUtilCancionesUsuario() const {
+    return this->util_canciones_escuchadas;
+}
+Playlist Usuario_comun::getPlaylistUsuario(const int i)const {
+    return this->playlists_usuario[i];
+}
+int Usuario_comun::getUtilPlaylistUsuario()const{
+    return this->util_playlists_usuario;
+}
+ostream& operator<<(ostream &flujo, const Usuario_comun &u){
+
+    u.printUsuario();
+
+    for(int t=0; t < u.getUtilCancionesUsuario(); t++){
+        flujo << u.getCancionUsuario(t);
+    }
+
+    return flujo;
+}
+
+
+

@@ -134,6 +134,8 @@ void Playlist::operator=(const Playlist &p){
        this->canciones[i]=p.canciones[i];
    }
 
+ 
+
    
 }
 istream& operator>>(istream &flujo,  Playlist &p){
@@ -144,14 +146,13 @@ istream& operator>>(istream &flujo,  Playlist &p){
     Tiempo duracion;
     Cancion c;
 
+    cout << "-----------------------" << endl;
     cout << "Id Playlist: "; 
     while(!(flujo >> idPlaylist)){
         cin.clear();
         cin.ignore();
         cout << "Ingrese un numero positivo " << endl; 
     }
-    
-    
     
     cout << "Nombre : "; 
     while(!(flujo >> nombre)){
@@ -169,6 +170,7 @@ istream& operator>>(istream &flujo,  Playlist &p){
         cout << "Ingrese un duracion valida " << endl; 
     }
     //agregar cancion en playlist
+     cout << "-----------------------" << endl;
 
     p.setIDPlaylist(idPlaylist);
     p.setNombrePlaylist(nombre);
@@ -179,6 +181,7 @@ istream& operator>>(istream &flujo,  Playlist &p){
 }
 ostream& operator<<(ostream &flujo, const Playlist &p){
    
+     cout << "-----------------------" << endl;
     cout << "Id Playlist: "; 
     flujo << p.getIDPlaylist() << endl;
 
@@ -188,5 +191,22 @@ ostream& operator<<(ostream &flujo, const Playlist &p){
     cout << "Duracion: ";
     flujo << p.getDuracionPlaylist() << endl;
 
+     cout << "-----------------------" << endl;
     return flujo;
+}
+Tiempo Playlist::calcularDuracionPlaylist(){
+
+    int seg=0;
+    int min=0;
+    Tiempo t;
+
+    for (int i=0; this->getUtilCancionesPlaylist(); i++){
+        seg+=this->duracion.getSegundos();
+        min+=this->duracion.getMinutos();
+    }
+
+    t.setMinutos(min);
+    t.setSegundos(seg);
+    
+    return t;
 }
