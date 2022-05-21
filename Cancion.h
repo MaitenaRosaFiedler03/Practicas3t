@@ -177,5 +177,9 @@ class Cancion{
          */
         friend ostream& operator<<(ostream &flujo, const Cancion &c);
 
+        //agregar artista 
+
+        //eliminarArtista 
+
 };
 #endif

@@ -9,19 +9,43 @@
 using namespace std;
 
 int main (){
-    Cancion c; 
-    Playlist p;
-    Artista a;
+    
+    int opcion ; 
+    Cancion c,b; 
+    Artista a,e;
 
-   c.setActivo(true);
-   a.setActivado(true);
-    cin >> c;
+    do{
+        cout << "Caso 1 (creacion, igualacion de artista)" << endl; 
+        cout << "Caso 2 (creacion igualacion de cancion  )" << endl; 
+        cin >> opcion ; 
 
-    cin >> a;
-    c.setArtista(&a,0);
+        switch (opcion) {
+            
+            case 1: 
+                    cout << "Artista " << endl; 
+                    a.setActivado(true);
+                    cin >> a;
+                    cout << a << endl; 
+                    e=a;
+                    cout << "artista e " << endl; 
+                    cout << e << endl;  
 
+            break; 
 
-    cout << c << endl;  
+            case 2: 
+                cout << "Cancion---" << endl; 
+                c.setActivo(true);
+                c.setArtista(&a,0);
+                cin >> c ;
+                cout << c << endl; 
 
+                b=c;
+                cout << "cancion b----" << endl; 
+
+                cout << b << endl; 
+
+            break; 
+        }
+    }while(opcion != -1);
 
 }

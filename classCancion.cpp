@@ -157,7 +157,7 @@ Cancion::Cancion(){
     
     t.setMinutos(0);
     t.setSegundos(0);
-    
+    this->setActivo(true);
     this->setIdCancion(0);
     this->setNombreCancion("NULL");
     this->setDuracion(t);
@@ -270,6 +270,7 @@ istream& operator>>(istream &flujo,  Cancion &c){
     string nombre; 
     int total;
     Tiempo duracion;
+    int util=0;
     int artista=0;
     
         cout << "Id Cancion: ";
@@ -294,13 +295,14 @@ istream& operator>>(istream &flujo,  Cancion &c){
         }
 
         cout << "Duracion: " << endl;
+
         while(!(flujo >> duracion)){
             cin.clear();
             cin.ignore();
             cout << "Ingrese numero positivo " << endl; 
         }   
 
-        cout << "util: " << c.getUtil_artista() << endl;
+        
         do{
             artista=0;
 
@@ -316,8 +318,9 @@ istream& operator>>(istream &flujo,  Cancion &c){
             if(artista != -1){
                 c.setArtista(c.getArtista(artista),c.getUtil_artista()-1);
             }
-            artista=c.getUtil_artista();
-            c.setUtil_artista(artista++);
+             
+            c.setUtil_artista(util++);
+
         }while(artista!= -1);
 
         c.setIdCancion(id);
