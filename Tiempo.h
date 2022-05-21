@@ -70,4 +70,15 @@ class Tiempo{
      * @param t 
      */
     void operator=(const Tiempo &t);
+
+    /**
+     * @brief 
+     * 
+     * @param flujo 
+     * @param t 
+     * @return istream& 
+     */
+    friend istream& operator>>(istream &flujo,  Tiempo &t);
+
+    ostream& operator<<(ostream &flujo, const Tiempo &t)
 };

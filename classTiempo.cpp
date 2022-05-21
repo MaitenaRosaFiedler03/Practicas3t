@@ -99,7 +99,7 @@ ostream& operator<<(ostream &flujo, const Tiempo &t){
     return flujo;
 }
 istream& operator>>(istream &flujo,  Tiempo &t){
-    
+
     int seg;
     int min;
 
@@ -110,3 +110,4 @@ istream& operator>>(istream &flujo,  Tiempo &t){
 
     return flujo;
 }
+

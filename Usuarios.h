@@ -92,6 +92,30 @@ class Usuario{
          */
         string getPassword() const ;
         
-       
+        /**
+         * @brief 
+         * 
+         * @param u 
+         */
+        void operator=(const Usuario &u);
+
+        /**
+         * @brief 
+         * 
+         * @param flujo 
+         * @param u 
+         * @return ostream& 
+         */
+       friend ostream& operator<<(ostream &flujo, const Usuario &u);
+
+        /**
+         * @brief 
+         * 
+         * @param flujo 
+         * @param u 
+         * @return istream& 
+         */
+       friend istream& operator>>(istream &flujo,  Usuario &u);
+
 };
 #endif

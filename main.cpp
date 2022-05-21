@@ -12,5 +12,9 @@
 using namespace std;
 
 int main (){
-    cout << "hola" << endl;
+    Cancion a; 
+
+    a.setActivo(true);
+    cin >> a;
+    cout << a; 
 }

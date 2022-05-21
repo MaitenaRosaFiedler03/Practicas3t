@@ -68,6 +68,52 @@ void Usuario::setLogin(const string login){
 void Usuario::setPassword(const string nuevo){
     this->password=nuevo;
 }
-bool Usuario::getLogin() const {
+string Usuario::getLogin() const {
 
+    return this->login;
+}
+unsigned int Usuario::getIDUsuario() const{
+    return this->id;
+}
+bool Usuario::getActivado()const{
+    return this->activado;
+}
+
+string Usuario::getPassword()const {
+    return this->password;
+}
+
+void Usuario::operator=(const Usuario &u){
+    this->id=u.id;
+    this->activado=u.activado;
+    this->login=u.login;
+    this->password=u.password;
+    
+}
+ostream& operator<<(ostream &flujo, const Usuario &u){
+
+    cout << "Id usuario: ";
+    flujo << u.getIDUsuario() << endl; 
+
+    cout << "Nombre de Usuario: " ; 
+    flujo << u.getLogin() << endl; 
+
+    return flujo;
+}
+istream& operator>>(istream &flujo,  Usuario &u){
+
+    unsigned int id;
+    string nombre;
+
+    cout << "Id usuario: ";
+    flujo >> id; 
+
+    cout << "Nombre de Usuario: " ; 
+    flujo >> nombre; 
+
+    u.setIDUsuario(id);
+    u.setLogin(nombre);
+
+    return flujo;
+    
 }
