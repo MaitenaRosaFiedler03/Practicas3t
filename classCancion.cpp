@@ -84,7 +84,8 @@ void Cancion::setDuracion(const Tiempo &t){
     if(debug==true)
         cout << RED << "Estableciendo la duracion de la cancion" << "La dirección de this es: " << this << RESET << endl;
 
-    this->duracion=t;
+    this->duracion.setMinutos(t.getMinutos());
+    this->duracion.setSegundos(t.getSegundos());
 }
 int Cancion::getTotalRepro() const {
     return this->total_reproducciones;
@@ -247,15 +248,41 @@ istream& operator>>(istream &flujo,  Cancion &c){
     unsigned int id; 
     string nombre; 
     int total;
+    Tiempo duracion;
     
         cout << "Id Cancion: ";
-        flujo >> id;
+        while(!(flujo >> id)){
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese numero positivo " << endl; 
+        }
 
         cout << "Nombre Cancion: ";
-        flujo >> nombre; 
+        while(!(flujo >> nombre)){
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese nombre valido " << endl; 
+        }
 
         cout << "Reproducciones: ";
-        flujo >> total; 
+        while(!(flujo >> total)){
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese numero positivo " << endl; 
+        }
+
+        cout << "Duracion: " << endl;
+         while(!(flujo >> duracion)){
+        cin.clear();
+        cin.ignore();
+        cout << "Ingrese numero positivo " << endl; 
+    }
+
+        c.setIdCancion(id);
+        c.setNombreCancion(nombre);
+        c.setUtil_artista(2);
+        c.setTotalRepro(total);
+        c.setDuracion(duracion);
 
     return flujo;
     
@@ -274,10 +301,24 @@ ostream& operator<<(ostream &flujo, const Cancion &c){
         flujo << c.getTotalRepro() << endl; 
 
         cout << "Duracion: ";
-        //flujo  << c.getDuracion() << endl; 
+        flujo  << c.getDuracion() << endl; 
 
+        cout << "Artistas :" << endl;
+
+        //c.printVectorArtistas();
+         
     }
     return flujo;
 }
+void Cancion::printVectorArtistas()const {
 
+    cout << "Imprimir vector artista" << endl; 
+    cout << "util artista: " << this->getUtil_artista() << endl; 
+
+    for(int i =0; i < this->getUtil_artista();i++){
+          
+            cout << *this->v_Artista[i];
+
+    }
+}
 

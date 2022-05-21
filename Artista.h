@@ -149,6 +149,10 @@ class Artista{
          */
         friend istream& operator>>(istream &flujo,  Artista &a);   
         
-        
+        /**
+         * @brief 
+         * 
+         */
+        void printV_Canciones() const ;
 };
 #endif

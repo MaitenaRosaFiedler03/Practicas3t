@@ -83,18 +83,20 @@ void Tiempo::operator=(const Tiempo &t){
 }
 ostream& operator<<(ostream &flujo, const Tiempo &t){
 
-    if(t.getMinutos() <= 9){
-        cout << ":0" << t.getMinutos(); 
+   
+   if(t.getMinutos() <= 9){
+        flujo << ":0" << t.getMinutos(); 
     }
     if(t.getMinutos() > 9){ 
-        cout << ":" << t.getMinutos(); 
+        flujo << ":" << t.getMinutos(); 
     }
     if(t.getSegundos() <= 9){ 
-        cout << ":0" << t.getSegundos() ; 
+        flujo << ":0" << t.getSegundos() ; 
     }
     if(t.getSegundos() > 9){ 
-        cout << ":" << t.getSegundos() ; 
+        flujo << ":" << t.getSegundos() ; 
     }
+
     
     return flujo;
 }
@@ -103,10 +105,25 @@ istream& operator>>(istream &flujo,  Tiempo &t){
     int seg;
     int min;
 
-    cout << "Introduzca los segundos: ";
-    flujo >> seg;
     cout << "Introduzca los minutos: ";
-    flujo >> min; 
+    
+    while(!(flujo >> min)){
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese numero positivo " << endl; 
+        }
+
+    cout << "Introduzca los segundos: ";
+
+     while(!(flujo >> seg)){
+        cin.clear();
+        cin.ignore();
+        cout << "Ingrese numero positivo " << endl; 
+    }
+
+    
+    t.setMinutos(min);
+    t.setSegundos(seg);
 
     return flujo;
 }

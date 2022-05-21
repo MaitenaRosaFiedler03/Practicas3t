@@ -79,7 +79,7 @@ class Playlist{
          * @param cancion 
          * @return Cancion* 
          */
-        Cancion* getCancionPlaylist(const int &cancion);
+        Cancion* getCancionPlaylist(const int &cancion)const ;
 
         /**
          * @brief 
@@ -100,14 +100,14 @@ class Playlist{
          * 
          * @return int 
          */
-        int getUtilCancionesPlaylist();
+        int getUtilCancionesPlaylist()const;
 
         /**
          * @brief Get the Duracion Playlist object
          * 
          * @return Tiempo 
          */
-        Tiempo getDuracionPlaylist();
+        Tiempo getDuracionPlaylist() const ;
 
 
         /**
@@ -115,7 +115,7 @@ class Playlist{
          * 
          * @return Playlist& 
          */
-         Playlist& operator=(const Playlist&);
+         void operator=(const Playlist&);
 
         /**
          * @brief Set the Duracion Playlist object
@@ -124,5 +124,8 @@ class Playlist{
          */
         void setDuracionPlaylist(const Tiempo &t);
 
-};
+        friend ostream& operator<<(ostream &flujo, const Playlist &p);
+
+        friend istream& operator>>(istream &flujo,  Playlist &p);
+};      
 #endif

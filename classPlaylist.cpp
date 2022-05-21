@@ -49,23 +49,32 @@ Playlist::~Playlist(){
     this->duracion.setSegundos(0);
 }
 
-Cancion* Playlist::getCancionPlaylist(const int &cancion){
+Cancion* Playlist::getCancionPlaylist(const int &cancion)const{
     return this->canciones[cancion];
 }
 void Playlist::eliminarCancionDePlaylist(const int &cancion){
 
 }
 void Playlist::setUtilCancionesPlaylist(const int &nueva){
+   
+   //if(debug==true)
+        cout << RED << "Estableciendo util canciones playlist" << "La dirección de this es: " << this << RESET << endl;
+
    this->util_v_canciones=nueva;
 }
-int Playlist::getUtilCancionesPlaylist(){
+int Playlist::getUtilCancionesPlaylist() const {
     return this->util_v_canciones;
 }
-Tiempo Playlist::getDuracionPlaylist(){
+Tiempo Playlist::getDuracionPlaylist()const {
     return this->duracion;
 }
 void Playlist::setDuracionPlaylist(const Tiempo &t){
-    this->duracion=t;
+
+    //if(debug==true)
+        cout << RED << "Estableciendo la duracion de la playlist" << "La dirección de this es: " << this << RESET << endl;
+
+    this->duracion.setMinutos(t.getMinutos());
+    this->duracion.setSegundos(t.getSegundos());
 }
 Playlist::Playlist( Playlist &p){
 
@@ -91,20 +100,93 @@ Playlist::Playlist( Playlist &p){
 }
 
 void Playlist::setIDPlaylist(const unsigned int i){
+
+    //if(debug==true)
+        cout << RED << "Estableciendo id de la playlist" << "La dirección de this es: " << this << RESET << endl;
+
     this->idPlaylist=i;
 }
 unsigned int Playlist::getIDPlaylist()const {
     return this->idPlaylist;
 }
 void Playlist::setNombrePlaylist(const string nueva){
+
+    //if(debug==true)
+        cout << RED << "Estableciendo el nombre de la playlist" << "La dirección de this es: " << this << RESET << endl;
+
+
     this->nombre=nueva;
 }
 string Playlist::getNombrePlaylist() const {
     return this->nombre;
 }
 void Playlist::agregarCancionEnPlaylist(Cancion* c){
-
+//resize 
 }
-/*Playlist& Playlist::operator=(const Playlist &p){
-    return ;
-}*/
+
+void Playlist::operator=(const Playlist &p){
+   
+   this->idPlaylist=p.idPlaylist;
+   this->nombre=p.nombre;
+   this->setDuracionPlaylist(p.duracion);
+   
+   for(int i; i < this->getUtilCancionesPlaylist(); i++){
+       this->canciones[i]=p.canciones[i];
+   }
+
+   
+}
+istream& operator>>(istream &flujo,  Playlist &p){
+
+    unsigned int idPlaylist;
+    string nombre;
+    int util_v_canciones;
+    Tiempo duracion;
+    Cancion c;
+
+    cout << "Id Playlist: "; 
+    while(!(flujo >> idPlaylist)){
+        cin.clear();
+        cin.ignore();
+        cout << "Ingrese un numero positivo " << endl; 
+    }
+    
+    
+    
+    cout << "Nombre : "; 
+    while(!(flujo >> nombre)){
+        cin.clear();
+        cin.ignore();
+        cout << "Ingrese nombre valido " << endl; 
+    }
+
+
+    cout << "Duracion: ";
+  
+      while(!(flujo >> duracion)){
+        cin.clear();
+        cin.ignore();
+        cout << "Ingrese un duracion valida " << endl; 
+    }
+    //agregar cancion en playlist
+
+    p.setIDPlaylist(idPlaylist);
+    p.setNombrePlaylist(nombre);
+    p.setDuracionPlaylist(duracion);
+
+
+    return flujo;
+}
+ostream& operator<<(ostream &flujo, const Playlist &p){
+   
+    cout << "Id Playlist: "; 
+    flujo << p.getIDPlaylist() << endl;
+
+    cout << "Nombre : "; 
+    flujo << p.getNombrePlaylist() << endl;
+
+    cout << "Duracion: ";
+    flujo << p.getDuracionPlaylist() << endl;
+
+    return flujo;
+}

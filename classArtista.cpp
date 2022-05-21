@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "Artista.h"
+//#include "Cancion.h"
 using namespace std;
 
 #define RESET   "\033[0m"
@@ -9,6 +10,7 @@ using namespace std;
 #define GREEN   "\033[32m"      /*MENSAJES AL USUARIO*/ 
 #define YELLOW  "\033[33m"      /*MENSAJE DE ERROR*/
 #define BLUE    "\033[34m"      /*MENSAJE DE EXITO*/
+
 
 
 
@@ -42,6 +44,7 @@ Artista::~Artista(){
 
 }
 Artista::Artista(const Artista &a){
+
     //if(Debug==true)
     cout << RED <<  "Se invoca al Constructor por copia Artista."
          << "La dirección de this es: " << this << DEFAULT << endl;
@@ -56,9 +59,12 @@ Artista::Artista(const Artista &a){
         cerr << "NO hay memoria disponible... Cerrando programa" << endl;
         exit(-1);
     }
-for(int i=0; i <= this->getUtilCancionesCreadas() ; i++)
-    this->canciones[i]=a.getCancionArtista(i);
+
+    for(int i=0; i <= this->getUtilCancionesCreadas() ; i++)
+        this->canciones[i]=a.getCancionArtista(i);
+
 }
+
 unsigned int Artista::getIdArtista()const {
     return this->idArtista;
 }
@@ -174,9 +180,7 @@ ostream& operator<<(ostream &flujo, const Artista &a){
 
         cout << "Canciones del artista : " << endl;
 
-        /*for(int i=0; i < a.getUtilCancionesCreadas();i++){
-            flujo << *(a.getCancionArtista(i));
-        }*/
+       // a.printV_Canciones();
     }
 
    return flujo;
@@ -191,11 +195,20 @@ istream& operator>>(istream &flujo,  Artista &a){
 
         cout << "Id Artista: ";
 
-        flujo >> id;
+        while(!(flujo >> id)){
+
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese numero positivo " << endl; 
+        }
 
         cout << "Nombre artista: ";
-
-        flujo >> nombre;
+    
+         while(!(flujo >> nombre)){
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese nombre Vàlido " << endl; 
+        }
 
         cout << "Canciones del artista : " << endl;
         
@@ -207,4 +220,13 @@ istream& operator>>(istream &flujo,  Artista &a){
         a.setNombreArtista(nombre);
     }
     return flujo;
+}
+void Artista::printV_Canciones()const {
+
+
+    for(int i=0; i < this->getUtilCancionesCreadas();i++){
+       //cout << *this->canciones[i];
+      
+    }
+
 }

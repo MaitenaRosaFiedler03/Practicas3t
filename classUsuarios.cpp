@@ -56,16 +56,36 @@ Usuario::Usuario(const int id, const bool activo, const string login, const stri
 }
        
 void Usuario::setIDUsuario(const unsigned int id){
+
+    //if(debug==true)
+        cout << RED << "Estableciendo id de usuario" << "La dirección de this es: " << this << RESET << endl;
+
+
     this->id=id;
 }
 
 void Usuario::setActivado(const bool activado){
+
+  //  if(debug==true)
+        cout << RED << "Estableciendo activo" << "La dirección de this es: " << this << RESET << endl;
+
+
     this->activado=activado;
 }
 void Usuario::setLogin(const string login){
+
+    //if(debug==true)
+        cout << RED << "Estableciendo el login" << "La dirección de this es: " << this << RESET << endl;
+
+
     this->login=login;
 }
 void Usuario::setPassword(const string nuevo){
+
+    //if(debug==true)
+        cout << RED << "Estableciendo la constraseña.." << "La dirección de this es: " << this << RESET << endl;
+
+
     this->password=nuevo;
 }
 string Usuario::getLogin() const {
@@ -104,15 +124,36 @@ istream& operator>>(istream &flujo,  Usuario &u){
 
     unsigned int id;
     string nombre;
+    string password;
 
     cout << "Id usuario: ";
-    flujo >> id; 
+    
+    
+    while(!(flujo >> id)){
+        cin.clear();
+        cin.ignore();
+        cout << "Ingrese numero positivo " << endl; 
+    }
 
     cout << "Nombre de Usuario: " ; 
-    flujo >> nombre; 
+    
+    while(!(flujo >> nombre)){
+            cin.clear();
+            cin.ignore();
+            cout << "Ingrese valido " << endl; 
+        }
 
+    cout << "Contraseña: "; 
+    
+    while(!(flujo >> password)){
+        cin.clear();
+        cin.ignore();
+        cout << "Ingrese una contraseña valida " << endl; 
+    }
+    
     u.setIDUsuario(id);
     u.setLogin(nombre);
+    u.setPassword(password);
 
     return flujo;
     

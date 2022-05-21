@@ -13,8 +13,14 @@ using namespace std;
 
 int main (){
     Cancion a; 
+    Playlist p;
+    Artista c;
 
-    a.setActivo(true);
+   
     cin >> a;
     cout << a; 
+
+    /*
+    cin >> p ; 
+    cout << p; */
 }

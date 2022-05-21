@@ -80,5 +80,5 @@ class Tiempo{
      */
     friend istream& operator>>(istream &flujo,  Tiempo &t);
 
-    ostream& operator<<(ostream &flujo, const Tiempo &t)
+    friend ostream& operator<<(ostream &flujo, const Tiempo &t);
 };

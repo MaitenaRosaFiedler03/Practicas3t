@@ -97,16 +97,17 @@ class Usuario{
          * 
          * @param u 
          */
-        void operator=(const Usuario &u);
+       virtual void operator=(const Usuario &u);
 
         /**
          * @brief 
          * 
          * @param flujo 
          * @param u 
+         * @param u 
          * @return ostream& 
          */
-       friend ostream& operator<<(ostream &flujo, const Usuario &u);
+        friend ostream& operator<<(ostream &flujo, const Usuario &u);
 
         /**
          * @brief 

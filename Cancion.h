@@ -180,5 +180,11 @@ class Cancion{
          * @return ostream& 
          */
         friend ostream& operator<<(ostream &flujo, const Cancion &c);
+
+        /**
+         * @brief 
+         * 
+         */
+        void printVectorArtistas() const;
 };
 #endif
