@@ -312,7 +312,7 @@ istream& operator>>(istream &flujo,  Cancion &c){
             cout << "Ingrese numero positivo " << endl; 
         }   
 
-        c.agregarArtista();
+       // c.agregarArtista();
        
 
         c.setIdCancion(id);
@@ -325,7 +325,7 @@ istream& operator>>(istream &flujo,  Cancion &c){
     return flujo;
     
 }
-void Cancion::agregarArtista(e){
+void Cancion::agregarArtista(){
 
     string artista;
     string artista2;
@@ -335,11 +335,11 @@ void Cancion::agregarArtista(e){
     int lugar; 
 
 
-    for(int i =0; i < v.getUtilArtistasSistema(); i++){
-        cout  << i << ".- " <<  v.getArtistaSistema(i)->getNombreArtista();
-    }
+  //  for(int i =0; i < v.getUtilArtistasSistema(); i++){
+       // cout  << i << ".- " <<  v.getArtistaSistema(i)->getNombreArtista();
+    //}
 
-    cout << "Ingrese el nombre del artista  ";
+  /*  cout << "Ingrese el nombre del artista  ";
     cin.ignore();
     getline(cin,artista);
 
@@ -347,9 +347,9 @@ void Cancion::agregarArtista(e){
     transform(artista.begin(), artista.end(),artista.begin(),::tolower);
     cout << "a " << endl;
 
-    cout << v.getUtilArtistasSistema() << endl; 
+    //cout << v.getUtilArtistasSistema() << endl; 
 
-    for(int i=0; i < v.getUtilArtistasSistema(); i++){
+    //for(int i=0; i < v.getUtilArtistasSistema(); i++){
 
         artista2= v.getArtistaSistema(i)->getNombreArtista();
         cout << a << endl; 
@@ -370,7 +370,7 @@ void Cancion::agregarArtista(e){
 
             this->setUtil_artista(util);
         }
-    }
+    }*/
 
 
   

@@ -158,11 +158,9 @@ istream& operator>>(istream &flujo,  Playlist &p){
     }
     
     cout << "Nombre : "; 
-    while(!(flujo >> nombre)){
-        cin.clear();
-        cin.ignore();
-        cout << "Ingrese nombre valido " << endl; 
-    }
+    cin.ignore();
+    getline(cin,nombre);
+    
 
 
     cout << "Duracion: ";
