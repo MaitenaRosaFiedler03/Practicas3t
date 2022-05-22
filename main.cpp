@@ -76,20 +76,26 @@ int main (){
     Cancion c,b; 
     Artista a,e;
     Tiempo t,d;
+    cout << "a" << endl;
     Vista v; 
+    cout << "v" << endl;
+  // Usuario* s; 
+    Usuario_comun g;
+    cout << "d" << endl;
     v.debugON(false);
-
+    cout << "a" << endl;
     ArtistasPredeterminados(v);
     CancionesPredeterminadas(v);
 
-    cout << "artista 0: " << endl;
-    cout << *v.getArtistaSistema(0) << endl; 
+   
     
 
     do{
         cout << "Caso 1 (creacion, igualacion de artista)" << endl; 
         cout << "Caso 2 (creacion igualacion de cancion  )" << endl; 
         cout << "Caso 3 (creacion igualacion y suma de Tiempo)" <<  endl; 
+        cout << "caso 4: imprimir artistas y canciones de sitema " << endl; 
+        cout << "caso 5: polimorfismo con usuario  " << endl;  
 
         cin >> opcion ; 
 
@@ -144,6 +150,12 @@ int main (){
                  cout << a;
                  cout << c; 
             break;
+
+            case 5: 
+
+
+
+            break; 
         }
     }while(opcion != -1);
 

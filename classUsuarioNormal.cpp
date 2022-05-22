@@ -14,7 +14,7 @@ Usuario_comun::Usuario_comun(){
     cout << RED <<  "Se invoca al Constructor Usuario_comun."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
-    Cancion** c= new Cancion*[1];
+    Cancion** c= new Cancion*[3];
     if(c==0){
          cout << "No hay memoria en el sistema... cerrando programa " << endl;
         exit(-1);        
@@ -22,8 +22,7 @@ Usuario_comun::Usuario_comun(){
 
     this->canciones_usuario=c;
 
-    delete c;
-    c=0;
+   
 
     this->util_canciones_escuchadas=0;
 
@@ -31,8 +30,6 @@ Usuario_comun::Usuario_comun(){
 
     this->playlists_usuario=p;
 
-    delete p;
-    p=0;
 
     this->util_playlists_usuario=0;
 }
@@ -128,11 +125,103 @@ ostream& operator<<(ostream &flujo, const Usuario_comun &u){
         flujo << u.getCancionUsuario(t);
     }
 
+    for(int i=0; i < u.getUtilPlaylistUsuario(); i++){
+        flujo << u.getPlaylistUsuario(i);
+    }
+
     return flujo;
 }
 void Usuario_comun::debugON(const bool nuevo){
     this->debug=nuevo;
 }
+void Usuario_comun::resizeVectorCanciones(const int dim_nueva){
+
+    if(this->debug==true){
+    cout << RED <<  "Se invoca al resize de Canciones del usuario ."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+    }
+
+    Cancion** nuevo= new Cancion*[dim_nueva+1];
+    
+    if(nuevo == 0){
+        cerr << "No hay espacio suficiente. Se terminará la ejecución del programa." << endl;
+        exit(-1);
+    }
+    else 
+    cout << GREEN << "Vector creado correctamente.." << RESET << endl;
+    
+    //se inicializa el nuevo vector a cero 
+
+    if(dim_nueva < this->getUtilCancionesUsuario()){
+       
+        for(int i=0; i < dim_nueva +1; i++){
+            
+            nuevo[i]= this->getCancionUsuario(i);
+            
+        }        
+
+    }
+
+    else if(dim_nueva >= this->getUtilCancionesUsuario()){
+ 
+        for(int i=0; i < this->getUtilPlaylistUsuario() +1; i++){
+            nuevo[i]= this-> getCancionUsuario(i);
+        }
+    }
+    //se elimina el antiguo vector 
+    delete [] this->canciones_usuario; 
+
+    //se establece el nuevo grado maximo 
+    
+    //se iguala la direcciòn de memoria del vector dinamico coef con el nuefvo vector  
+    this-> canciones_usuario = nuevo;
+
+}
+void Usuario_comun::resizeVectorPlaylist(const int dim_nueva){
+
+    if(this->debug==true){
+    cout << RED <<  "Se invoca al resize de Playlist del usuario ."
+         << "La dirección de this es: " << this << DEFAULT << endl;
+    }
+
+    Playlist* nuevo= new Playlist[dim_nueva+1];
+    
+    if(nuevo == 0){
+        cerr << "No hay espacio suficiente. Se terminará la ejecución del programa." << endl;
+        exit(-1);
+    }
+    else 
+    cout << GREEN << "Vector creado correctamente.." << RESET << endl;
+    
+    //se inicializa el nuevo vector a cero 
+
+    if(dim_nueva < this->getUtilPlaylistUsuario()){
+       
+        for(int i=0; i < dim_nueva +1; i++){
+            
+            nuevo[i]= this->getPlaylistUsuario(i);
+            
+        }        
+
+    }
+
+    else if(dim_nueva >= this->getUtilPlaylistUsuario()){
+ 
+        for(int i=0; i < this->getUtilPlaylistUsuario() +1; i++){
+            nuevo[i]= this-> getPlaylistUsuario(i);
+        }
+    }
+    //se elimina el antiguo vector 
+    delete [] this->playlists_usuario; 
+
+    //se establece el nuevo grado maximo 
+    
+    //se iguala la direcciòn de memoria del vector dinamico coef con el nuefvo vector  
+    this-> playlists_usuario = nuevo;
+
+}
+
+
 
 
 

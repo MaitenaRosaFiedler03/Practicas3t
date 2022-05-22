@@ -8,7 +8,7 @@ using namespace std;
 
 class Usuario_comun : public Usuario{
 
-    private:
+    protected:
 
         Cancion** canciones_usuario;
         int util_canciones_escuchadas;
@@ -131,7 +131,12 @@ class Usuario_comun : public Usuario{
          * @return ostream& 
          */
        friend ostream& operator<<(ostream &flujo, const Usuario_comun &u);
-        
+
+        /**
+         * @brief 
+         * 
+         * @param nuevo 
+         */
         void debugON(const bool nuevo);
 };
 #endif
