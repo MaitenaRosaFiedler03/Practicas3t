@@ -23,19 +23,24 @@ Usuario::Usuario(){
 
 Usuario::~Usuario(){
 
-      cout << RED <<  "Se invoca al Constructor Usuario."
-         << "La dirección de this es: " << this << DEFAULT << endl;
+    if(this->debug==true){
+         cout << RED <<  "Se invoca al Destructor Usuario."<< "La dirección de this es: " << this << DEFAULT << endl;
+    }     
 
-
-    this->id=0;
-    this->activado=true;
-    this->login="NULL";
-    this->password="NULL";
+    if(this!=0){
+        this->id=0;
+        this->activado=true;
+        this->login="NULL";
+        this->password="NULL";
+    }
+    else 
+        cout << "Objeto eliminado previamente " << endl; 
 }
 Usuario::Usuario(const Usuario &u){
 
-    cout << RED <<  "Se invoca al Constructor por copia de Usuario."
-         << "La dirección de this es: " << this << DEFAULT << endl;
+     if(this->debug==true){
+         cout << RED <<  "Se invoca al Constructor por copia Usuario."<< "La dirección de this es: " << this << DEFAULT << endl;
+    }     
 
 
     this->id = u.id;
@@ -45,9 +50,10 @@ Usuario::Usuario(const Usuario &u){
 }
 Usuario::Usuario(const int id, const bool activo, const string login, const string contra){
     
+    if(this->debug== true){
      cout << RED <<  "Se invoca al Constructor por parametro de Usuario."
          << "La dirección de this es: " << this << DEFAULT << endl;
-
+    }
 
     this->id = id;
     this->activado = activo;
@@ -57,26 +63,26 @@ Usuario::Usuario(const int id, const bool activo, const string login, const stri
        
 void Usuario::setIDUsuario(const unsigned int id){
 
-    //if(debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo id de usuario" << "La dirección de this es: " << this << RESET << endl;
-
+    }
 
     this->id=id;
 }
 
 void Usuario::setActivado(const bool activado){
 
-  //  if(debug==true)
+   if(debug==true){
         cout << RED << "Estableciendo activo" << "La dirección de this es: " << this << RESET << endl;
-
+   }
 
     this->activado=activado;
 }
 void Usuario::setLogin(const string login){
 
-    //if(debug==true)
+    if(debug==true){
         cout << RED << "Estableciendo el login" << "La dirección de this es: " << this << RESET << endl;
-
+    }
 
     this->login=login;
 }
@@ -112,11 +118,14 @@ void Usuario::operator=(const Usuario &u){
 }
 void Usuario::printUsuario()const {
 
+    cout << "------------------------------ " << endl; 
     cout << "Id usuario: ";
     cout << this->getIDUsuario() << endl; 
 
     cout << "Nombre de Usuario: " ; 
     cout << this->getLogin() << endl; 
+
+    cout << "------------------------------ " << endl; 
 
 }
 istream& operator>>(istream &flujo,  Usuario &u){
@@ -124,6 +133,8 @@ istream& operator>>(istream &flujo,  Usuario &u){
     unsigned int id;
     string nombre;
     string password;
+
+     cout << "------------------------------ " << endl; 
 
     cout << "Id usuario: ";
     
@@ -136,11 +147,8 @@ istream& operator>>(istream &flujo,  Usuario &u){
 
     cout << "Nombre de Usuario: " ; 
     
-    while(!(flujo >> nombre)){
-            cin.clear();
-            cin.ignore();
-            cout << "Ingrese valido " << endl; 
-        }
+    cin.ignore();
+    getline(cin,nombre);
 
     cout << "Contraseña: "; 
     
@@ -153,6 +161,8 @@ istream& operator>>(istream &flujo,  Usuario &u){
     u.setIDUsuario(id);
     u.setLogin(nombre);
     u.setPassword(password);
+
+     cout << "------------------------------ " << endl; 
 
     return flujo;
     

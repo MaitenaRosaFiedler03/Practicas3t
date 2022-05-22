@@ -19,7 +19,7 @@ class Playlist{
         bool debug;
 
 
-        void resize(const int &NUEVA_DIM);
+        void resize(const int NUEVA_DIM);
 
     public:
         /**

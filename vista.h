@@ -64,7 +64,7 @@ class Vista{
          * 
          * @return Cancion* 
          */
-        Cancion getCancionesSistema(int i)const;
+        Cancion* getCancionesSistema(int i)const;
 
         /**
          * @brief Set the Canciones Sistema object
@@ -93,7 +93,7 @@ class Vista{
          * 
          * @return Artista* 
          */
-        Artista getArtistaSistema(int i)const;
+        Artista* getArtistaSistema(int i)const;
 
         /**
          * @brief Set the Artista Sistema object

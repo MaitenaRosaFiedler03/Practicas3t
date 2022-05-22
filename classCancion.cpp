@@ -19,9 +19,9 @@ void Cancion::debugON(const bool nuevo){
     this->debug=nuevo;
 }
 void Cancion::operator=(const Cancion &c){
-
-    cout << RED <<  "Se invoca al operador= de Cancion."
-         << "La dirección de this es: " << this << DEFAULT << endl;
+    if(this->debug==true){
+        cout << RED <<  "Se invoca al operador= de Cancion."<< "La dirección de this es: " << this << DEFAULT << endl;
+    }
 
     if(this->v_Artista==0){
         this->v_Artista = new Artista* [c.util_artista+1];
@@ -54,8 +54,9 @@ int Cancion::getUtil_artista()const {
 }
 void Cancion::setUtil_artista(const int nueva){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo util artista" << "La dirección de this es: " << this << RESET << endl;
+    }
 
     this->util_artista=nueva;
 }
@@ -65,9 +66,9 @@ unsigned int Cancion::getIdCancion()const {
 }
 void Cancion::setIdCancion(const unsigned int nuevo){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo idCancion" << "La dirección de this es: " << this << RESET << endl;
-
+    }
     this->idCancion=nuevo;
 }
 Artista* Cancion::getArtista(int i)const{
@@ -75,8 +76,9 @@ Artista* Cancion::getArtista(int i)const{
 }
 void Cancion::setArtista( Artista *nuevo, int i ){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo artista en la cancion" << "La dirección de this es: " << this << RESET << endl;
+    }
 
     this->v_Artista[i]=nuevo;
 }
@@ -85,8 +87,10 @@ Tiempo Cancion::getDuracion() const {
 }
 void Cancion::setDuracion(const Tiempo &t){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo la duracion de la cancion" << "La dirección de this es: " << this << RESET << endl;
+    }
+
 
     this->duracion.setMinutos(t.getMinutos());
     this->duracion.setSegundos(t.getSegundos());
@@ -96,9 +100,9 @@ int Cancion::getTotalRepro() const {
 }
 void Cancion::setTotalRepro(int total){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo total reproducciones de la cancion " << "La dirección de this es: " << this << RESET << endl;
-
+    }
     this->total_reproducciones=total;
 }
 bool Cancion::getActivo() const{
@@ -106,16 +110,16 @@ bool Cancion::getActivo() const{
 }
 void Cancion::setActivo(const bool activo){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo idCancion" << "La dirección de this es: " << this << RESET << endl;
-
+    }
     this->activo=activo;
 }
 void Cancion::setNombreCancion(const string nuevo){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED << "Estableciendo nombre de la canciòn " << "La dirección de this es: " << this << RESET << endl;
-
+    }
     this->nombre=nuevo;
 }
 string Cancion::getNombreCancion()const{
@@ -123,8 +127,9 @@ string Cancion::getNombreCancion()const{
 }
 Cancion::~Cancion(){
 
-    if(this->debug==true)
+    if(this->debug==true){
         cout << RED <<  "Se invoca al Destructor Cancion." << "La dirección de this es: " << this << DEFAULT << endl;
+    }
 
     if(this!= 0){
         this->activo=false;
@@ -143,10 +148,10 @@ Cancion::~Cancion(){
 }
 Cancion::Cancion(){
 
-    if(this->debug==true)
+    if(this->debug==true){
     cout << RED <<  "Se invoca al Constructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
-
+    }
 
     //creo una variable tipo puntero a puntero y digo que apuntarà a un vector de punteros 
     Artista** a= new Artista*[1];
@@ -175,9 +180,10 @@ Cancion::Cancion(){
 }
 void Cancion::resize(const int dim_nueva){
 
-    if(this->debug==true)
+    if(this->debug==true){
     cout << RED <<  "Se invoca al resize de Artistas en Canciòn ."
          << "La dirección de this es: " << this << DEFAULT << endl;
+    }
 
     Artista** nuevo= new Artista*[dim_nueva+1];
     
@@ -244,6 +250,8 @@ ostream& operator<<(ostream &flujo, const Cancion &c){
     
     if(c.getActivo()==true){
 
+        cout << "-----------------------" << endl; 
+
         cout << "Id Cancion: ";
         flujo << c.getIdCancion() << endl;
 
@@ -256,15 +264,16 @@ ostream& operator<<(ostream &flujo, const Cancion &c){
         cout << "Duracion: ";
         flujo  << c.getDuracion() << endl; 
 
-        cout << "util: " << c.getUtil_artista() << endl;
         cout << "Artistas :" << endl;
 
         
         for(int i=0; i < c.getUtil_artista(); i++){
-            flujo << c.getArtista(i)->getNombreArtista();
+            flujo << c.getArtista(i)->getNombreArtista() << endl; 
         }
-         
+
+        cout << "-----------------------" << endl;      
     }
+
     return flujo;
 }
 istream& operator>>(istream &flujo,  Cancion &c){
@@ -303,9 +312,7 @@ istream& operator>>(istream &flujo,  Cancion &c){
             cout << "Ingrese numero positivo " << endl; 
         }   
 
-        
-       
-            c.agregarArtista();
+        c.agregarArtista();
        
 
         c.setIdCancion(id);
@@ -318,38 +325,58 @@ istream& operator>>(istream &flujo,  Cancion &c){
     return flujo;
     
 }
-void Cancion::agregarArtista(){
+void Cancion::agregarArtista(e){
 
-    Vista v;
     string artista;
     string artista2;
+    Artista a; 
     
     int util= this->getUtil_artista();
+    int lugar; 
+
 
     for(int i =0; i < v.getUtilArtistasSistema(); i++){
-        cout  << i << ".- " <<  v.getArtistaSistema(i).getNombreArtista();
+        cout  << i << ".- " <<  v.getArtistaSistema(i)->getNombreArtista();
     }
 
     cout << "Ingrese el nombre del artista  ";
     cin.ignore();
     getline(cin,artista);
 
-   transform(artista.begin(), artista.end(),artista.begin(),::tolower);
+    //se pasa el nombre ingresado a minisculas 
+    transform(artista.begin(), artista.end(),artista.begin(),::tolower);
+    cout << "a " << endl;
+
+    cout << v.getUtilArtistasSistema() << endl; 
 
     for(int i=0; i < v.getUtilArtistasSistema(); i++){
 
-        artista2= v.getArtistaSistema(i).getNombreArtista();
+        artista2= v.getArtistaSistema(i)->getNombreArtista();
+        cout << a << endl; 
+        //se pasa el nombre del artista en minisculas 
+        transform(artista2.begin(), artista2.end(),artista2.begin(),::tolower);
+
+        //acceder a los artistas del sistema 
 
         if(artista.compare(artista2) == 0){
-                cout << "son iguales " << endl; 
+            
+            util= this->getUtil_artista();
+            
+            resize(util +1); 
+
+            this->setArtista(&a, util-1);  
+
+            util++; 
+
+            this->setUtil_artista(util);
         }
     }
 
 
-   //this->v_Artista[util -1]=&v.getArtistaSistema();
-    util++;
+  
+    
 
-    this->setUtil_artista(util);
+   
 }
 
 

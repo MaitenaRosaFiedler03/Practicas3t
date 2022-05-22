@@ -8,7 +8,7 @@ using namespace std;
 class Artista;
 
 class Cancion{
-    private:
+    protected:
         unsigned int idCancion;
         string nombre;  
         int util_artista;
@@ -19,6 +19,13 @@ class Cancion{
         Artista** v_Artista;
         bool debug;
 
+    private:
+         /**
+         * @brief 
+         * 
+         * @param dim_nueva 
+         */
+        void resize(const int dim_nueva);
     public:
 
         /**
@@ -141,12 +148,7 @@ class Cancion{
          */
          void operator=(const Cancion &c);
 
-        /**
-         * @brief 
-         * 
-         * @param dim_nueva 
-         */
-        void resize(const int dim_nueva);
+       
 
         
         /**

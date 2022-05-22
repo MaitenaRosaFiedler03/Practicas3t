@@ -8,6 +8,68 @@
 #include "Playlist.h"
 using namespace std;
 
+void ArtistasPredeterminados(Vista &v){
+
+    Artista a; 
+
+    //Artista Luis Miguel 
+    a.setIdArtista(12345); 
+    a.setNombreArtista("Luis Miguel"); 
+    v.setArtistaSistema(a, 0); 
+    a.setIdArtista(67891);
+    
+    v.setArtistaSistema(a,0); 
+
+    //Artista WOS 
+    a.setIdArtista(67891);
+    a.setNombreArtista("WOS");
+   // 
+    v.setArtistaSistema(a,1);
+
+    v.setUtilArtistasSistema(2);
+
+}
+void CancionesPredeterminadas(Vista &v){
+
+    Cancion c; 
+    Tiempo t; 
+    Artista a; 
+
+    //cancion Luis Miguel
+    t.setMinutos(3);
+    t.setSegundos(11);
+    c.setNombreCancion("Ahora Te Puedes Marchar"); 
+    c.setDuracion(t);
+    c.setTotalRepro(123456);
+    c.setArtista(v.getArtistaSistema(0),0); 
+
+    v.setCancionesSistema(c, 0); 
+    a.setCancionesArtista(v.getCancionesSistema(0),0); 
+
+    
+
+
+    //Cancion WOS
+    t.setMinutos(2);
+    t.setSegundos(53);
+    c.setNombreCancion("ALMA DINAMITA"); 
+    c.setDuracion(t);
+    c.setIdCancion(98765);
+    c.setTotalRepro(213012);
+    c.setArtista(v.getArtistaSistema(1),0); 
+    
+    c.setArtista(v.getArtistaSistema(0),1); 
+
+    c.setUtil_artista(2);
+
+    v.setCancionesSistema(c, 1); 
+
+    a.setCancionesArtista(v.getCancionesSistema(1),0);
+
+    v.setUtilCancionesSistema(2);
+
+}
+
 int main (){
     
     int opcion ; 
@@ -15,21 +77,20 @@ int main (){
     Artista a,e;
     Tiempo t,d;
     Vista v; 
-    cout << "ahaha" << endl; 
-    const bool debug=false;
-    a.debugON(false);
-    e.debugON(false);
-    c.debugON(false);
-    b.debugON(false);
-    d.debugON(false);
-    t.debugON(false);
     v.debugON(false);
 
+    ArtistasPredeterminados(v);
+    CancionesPredeterminadas(v);
+
+    cout << "artista 0: " << endl;
+    cout << *v.getArtistaSistema(0) << endl; 
+    
 
     do{
         cout << "Caso 1 (creacion, igualacion de artista)" << endl; 
         cout << "Caso 2 (creacion igualacion de cancion  )" << endl; 
         cout << "Caso 3 (creacion igualacion y suma de Tiempo)" <<  endl; 
+
         cin >> opcion ; 
 
         switch (opcion) {
@@ -74,6 +135,15 @@ int main (){
 
                 cout << "t +d = " << t << endl; 
             break; 
+
+            case 4: 
+
+                cout << "Artista" << endl; 
+                a=*(v.getArtistaSistema(0));
+                c=*(v.getCancionesSistema(0));
+                 cout << a;
+                 cout << c; 
+            break;
         }
     }while(opcion != -1);
 

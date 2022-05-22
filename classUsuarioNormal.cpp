@@ -73,17 +73,19 @@ Usuario_comun::Usuario_comun(const Usuario_comun &c){
 }
 Usuario_comun::~Usuario_comun(){
 
-    //if(debug==true)
+    if(this->debug==true){
         cout << RED <<  "Se invoca al Deconstructor Cancion."
          << "La dirección de this es: " << this << DEFAULT << endl;
+    }
 
-
-    this->activado=false;
-    delete this->canciones_usuario;
-    this->util_playlists_usuario=0;
-    this->util_canciones_escuchadas=0;
-    this->canciones_usuario=0;
-    this->playlists_usuario=0;
+    if(this!= 0){
+        this->activado=false;
+        delete this->canciones_usuario;
+        this->util_playlists_usuario=0;
+        this->util_canciones_escuchadas=0;
+        this->canciones_usuario=0;
+        this->playlists_usuario=0;
+    }
 
 }
 void Usuario_comun::agregarCancionAUsuario(Cancion* cancion){
@@ -99,6 +101,10 @@ void Usuario_comun::eliminarPlaylistDeUsuario(const int play){
 
 }
 void Usuario_comun::setUtilPlaylistUsuario(const int util){
+
+    if(this->debug==true){
+        cout << RED <<  "Se establece la util de playlist usuario ."<< "La dirección de this es: " << this << DEFAULT << endl;
+    }
     this->util_playlists_usuario=util;
 }
 Cancion* Usuario_comun::getCancionUsuario(const int valor) const{
