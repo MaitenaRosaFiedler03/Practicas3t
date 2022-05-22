@@ -13,17 +13,29 @@ int main (){
     int opcion ; 
     Cancion c,b; 
     Artista a,e;
+    Tiempo t,d;
+    Vista v; 
+    cout << "ahaha" << endl; 
+    const bool debug=false;
+    a.debugON(false);
+    e.debugON(false);
+    c.debugON(false);
+    b.debugON(false);
+    d.debugON(false);
+    t.debugON(false);
+    v.debugON(false);
+
 
     do{
         cout << "Caso 1 (creacion, igualacion de artista)" << endl; 
         cout << "Caso 2 (creacion igualacion de cancion  )" << endl; 
+        cout << "Caso 3 (creacion igualacion y suma de Tiempo)" <<  endl; 
         cin >> opcion ; 
 
         switch (opcion) {
             
             case 1: 
                     cout << "Artista " << endl; 
-                    a.setActivado(true);
                     cin >> a;
                     cout << a << endl; 
                     e=a;
@@ -34,8 +46,9 @@ int main (){
 
             case 2: 
                 cout << "Cancion---" << endl; 
-                c.setActivo(true);
+     
                 c.setArtista(&a,0);
+             
                 cin >> c ;
                 cout << c << endl; 
 
@@ -44,6 +57,22 @@ int main (){
 
                 cout << b << endl; 
 
+            break; 
+
+            case 3: 
+                cout << "Tiempo " << endl; 
+
+                cin >> t; 
+
+                cout << t << endl;
+
+                cin >> d; 
+
+                cout << d << endl; 
+
+                t= t +d; 
+
+                cout << "t +d = " << t << endl; 
             break; 
         }
     }while(opcion != -1);

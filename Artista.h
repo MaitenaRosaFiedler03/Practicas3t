@@ -14,6 +14,7 @@ class Artista{
         bool activado;
         string nombre;
         int util_canciones;
+        bool debug;
         Cancion** canciones;
 
         /**
@@ -154,5 +155,12 @@ class Artista{
          * 
          */
         void printV_Canciones() const ;
+
+        /**
+         * @brief deja ver los mensajes de debug del sistema 
+         * 
+         * @param nuevo 
+         */
+        void debugON(const bool nuevo);
 };
 #endif

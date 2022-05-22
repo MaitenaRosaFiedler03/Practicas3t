@@ -14,6 +14,7 @@ class Usuario_comun : public Usuario{
         int util_canciones_escuchadas;
         Playlist* playlists_usuario;
         int util_playlists_usuario;
+        bool debug; 
 
         /**
          * @brief Construct a new resize Vector Canciones object
@@ -131,5 +132,6 @@ class Usuario_comun : public Usuario{
          */
        friend ostream& operator<<(ostream &flujo, const Usuario_comun &u);
         
+        void debugON(const bool nuevo);
 };
 #endif

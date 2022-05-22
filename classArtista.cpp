@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "Artista.h"
-//#include "Cancion.h"
+#include "Cancion.h"
 using namespace std;
 
 #define RESET   "\033[0m"
@@ -15,7 +15,7 @@ using namespace std;
 
 
 Artista::Artista(){
-   // if(Debug==true)
+   if(this->debug==true)
     cout << RED <<  "Se invoca al Constructor Artista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
@@ -31,21 +31,22 @@ Artista::Artista(){
 }
 Artista::~Artista(){
 
+    Cancion *c= 0;
     
-    //if(Debug==true)
+    if(this->debug==true)
     cout << RED <<  "Se invoca al Destructor Artista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
     this->setIdArtista(0);
-    //this->setNombreArtista("NULL");
+    this->setNombreArtista("NULL");
     this->setUtilCancionesCreadas(0);
-    //this->setCancionesArtista(0);
+    this->setCancionesArtista(c,0);
     delete this->canciones;
 
 }
 Artista::Artista(const Artista &a){
 
-    //if(Debug==true)
+    if(this->debug==true)
     cout << RED <<  "Se invoca al Constructor por copia Artista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
@@ -70,7 +71,7 @@ unsigned int Artista::getIdArtista()const {
 }
 void Artista::setIdArtista(const unsigned int nuevo){
 
-    //if(Debug==true)
+    if(this->debug==true)
         cout << RED << "Estableciendo idArtista" << "La dirección de this es: " << this << RESET << endl;
 
     this->idArtista=nuevo;
@@ -80,7 +81,7 @@ string Artista::getNombreArtista()const {
 }
 void Artista::setNombreArtista(const string nuevo){
 
-   // if(Debug==true)
+   if(this->debug==true)
         cout << RED << "Estableciendo el nombre del artista" << "La dirección de this es: " << this << RESET << endl;
 
     this->nombre=nuevo;
@@ -90,7 +91,7 @@ bool Artista::getActivado()const {
 }
 void Artista::setActivado(const bool nuevo){
 
-    //if(Debug==true)
+    if(this->debug==true)
         cout << RED << "Estableciendo el activado" << "La dirección de this es: " << this << RESET << endl;
 
 
@@ -98,7 +99,7 @@ void Artista::setActivado(const bool nuevo){
 }
 void Artista::setUtilCancionesCreadas(const int total){
    
-   // if(Debug==true)
+   if(this->debug==true)
         cout << RED << "Estableciendo la util de las canciones creadas" << "La dirección de this es: " << this << RESET << endl;
 
     this->util_canciones=total;
@@ -114,7 +115,7 @@ Cancion* Artista::getCancionArtista(const int i) const{
 }
 void Artista::setCancionesArtista(Cancion* nueva, int i){
 
-   // if(Debug==true)
+    if(this->debug==true)
         cout << RED << "Estableciendo la cancion en artista" << "La dirección de this es: " << this << RESET << endl;
 
 
@@ -124,7 +125,7 @@ void Artista::eliminarCancionDeArtista(const int cancion){
     
 }
 Artista:: Artista(const int id, const string nuevo, Cancion* c, const int a){
-   // if(Debug==true)
+   if(this->debug==true)
     cout << RED <<  "Se invoca al Constructor por copia Artista."
          << "La dirección de this es: " << this << DEFAULT << endl;
 
@@ -138,8 +139,7 @@ Artista:: Artista(const int id, const string nuevo, Cancion* c, const int a){
         exit(-1);
     }
 
-    for(int i=0; i <= this->getUtilCancionesCreadas() ; i++){}
-      // this->canciones[i]=c->
+    //se imprimen las canciones del sistema y se van eligiendo 
 }
 void Artista::operator=(const Artista &i){
     
@@ -204,11 +204,8 @@ istream& operator>>(istream &flujo,  Artista &a){
 
         cout << "Nombre artista: ";
     
-         while(!(flujo >> nombre)){
-            cin.clear();
-            cin.ignore();
-            cout << "Ingrese nombre Vàlido " << endl; 
-        }
+        cin.ignore();
+        getline(cin,nombre);
 
         cout << "Canciones del artista : " << endl;
         
@@ -229,4 +226,7 @@ void Artista::printV_Canciones()const {
       
     }
 
+}
+void Artista::debugON(const bool nuevo){
+    this->debug=nuevo;
 }

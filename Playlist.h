@@ -16,6 +16,7 @@ class Playlist{
         Cancion** canciones;
         int util_v_canciones;
         Tiempo duracion;
+        bool debug;
 
 
         void resize(const int &NUEVA_DIM);
@@ -148,5 +149,12 @@ class Playlist{
          * @return Tiempo 
          */
         Tiempo calcularDuracionPlaylist();
+
+        /**
+         * @brief deja ver los mensajes de debug del sistema 
+         * 
+         * @param nuevo 
+         */
+        void debugON(const bool nuevo); 
 };      
 #endif

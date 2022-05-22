@@ -11,6 +11,7 @@ class Usuario{
         bool activado;
         string login;
         string password;
+        bool debug;
 
     public:
 
@@ -118,5 +119,11 @@ class Usuario{
          */
        friend istream& operator>>(istream &flujo,  Usuario &u);
 
+      /**
+       * @brief deja ver los mensajes de debug del sistema 
+       * 
+       * @param nuevo 
+       */
+       void debugON(const bool nuevo); 
 };
 #endif

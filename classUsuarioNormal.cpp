@@ -124,6 +124,9 @@ ostream& operator<<(ostream &flujo, const Usuario_comun &u){
 
     return flujo;
 }
+void Usuario_comun::debugON(const bool nuevo){
+    this->debug=nuevo;
+}
 
 
 

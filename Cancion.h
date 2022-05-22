@@ -17,12 +17,13 @@ class Cancion{
         bool activo;
         //declaro que v_artista serà una variable puntero a puntero 
         Artista** v_Artista;
+        bool debug;
 
     public:
 
         /**
          * @brief Construye un nuevo objeto Cancion , se crea su memoria dinamica dentro y se establece todo a NULL o cero 
-         * 
+         * se establecen los valores de los atributos del objeto a 0 o a null
          */
         Cancion();
 
@@ -105,8 +106,10 @@ class Cancion{
         /**
          * @brief Get the Activo object
          * 
-         * @return true 
-         * @return false 
+         * @return true la cancion estarà disponible en pantalla y se podrà 
+         * interractuar con ella 
+         * @return false la canciòn no estarà disponible ni para almacenarle datos
+         *  ni para imprimirla por pantalla 
          */
         bool getActivo()const ;
 
@@ -132,7 +135,7 @@ class Cancion{
         int getUtil_artista()const;
 
         /**
-         * @brief 
+         * @brief copia los valores del objeto Cancion en aquel objeto de la clase Cancion que llame al metodo 
          * 
          * @param p 
          */
@@ -157,7 +160,6 @@ class Cancion{
          */
         Cancion(bool activada, unsigned int id, Artista **a, string titulo, Tiempo duracion, unsigned int total_reproducciones);
 
-        
 
         /**
          * @brief 
@@ -177,9 +179,21 @@ class Cancion{
          */
         friend ostream& operator<<(ostream &flujo, const Cancion &c);
 
-        //agregar artista 
+        /**
+         * @brief 
+         * 
+         * @param nuevo 
+         */
+        void agregarArtista();
 
         //eliminarArtista 
+
+        /**
+         * @brief deja ver los debug del sistema 
+         * 
+         * @param nuevo 
+         */
+        void debugON(const bool nuevo); 
 
 };
 #endif

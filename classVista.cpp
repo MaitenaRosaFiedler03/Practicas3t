@@ -95,3 +95,6 @@ int Vista::getUtilArtistasSistema()const{
 void Vista::setUtilArtistasSistema(const int util){
      this->util_artistas_sistema=util;
 }
+void Vista::debugON(const bool nuevo){
+    this->debug=nuevo;
+}

@@ -5,6 +5,8 @@ class Tiempo{
     private: 
         int minutos; 
         int segundos; 
+        bool debug;
+
 
     public: 
 
@@ -80,5 +82,27 @@ class Tiempo{
      */
     friend istream& operator>>(istream &flujo,  Tiempo &t);
 
+    /**
+     * @brief 
+     * 
+     * @param flujo 
+     * @param t 
+     * @return ostream& 
+     */
     friend ostream& operator<<(ostream &flujo, const Tiempo &t);
+
+    /**
+     * @brief 
+     * 
+     * @param t 
+     * @return Tiempo 
+     */
+    Tiempo operator+(const Tiempo &t);
+
+    /**
+     * @brief deja ver los debug del sistema
+     * 
+     * @param nuevo 
+     */
+    void debugON(const bool nuevo); 
 };

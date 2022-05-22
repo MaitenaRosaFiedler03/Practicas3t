@@ -18,6 +18,7 @@ class Vista{
         int util_canciones_sistema;
         Artista* artistas_sistema;
         int util_artistas_sistema;
+        bool debug;
 
     public:
         /**
@@ -115,6 +116,11 @@ class Vista{
          */
         void setUtilArtistasSistema(const int util);
 
-
+        /**
+         * @brief deja ver los debugs del sistema 
+         * 
+         * @param nuevo 
+         */
+        void debugON(const bool nuevo); 
 };
 #endif

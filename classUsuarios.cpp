@@ -157,3 +157,6 @@ istream& operator>>(istream &flujo,  Usuario &u){
     return flujo;
     
 }
+void Usuario::debugON(const bool nuevo){
+    this->debug=nuevo;
+}

@@ -210,3 +210,6 @@ Tiempo Playlist::calcularDuracionPlaylist(){
     
     return t;
 }
+void Playlist::debugON(const bool nuevo){
+    this->debug=nuevo;
+}

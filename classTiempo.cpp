@@ -78,8 +78,8 @@ int  minutos=0, var=0, segundos;
  
 }
 void Tiempo::operator=(const Tiempo &t){
-    this->minutos=t.segundos;
-    this->segundos=t.segundos;
+    this->setMinutos(t.getMinutos());
+    this->setSegundos(t.getSegundos());
 }
 ostream& operator<<(ostream &flujo, const Tiempo &t){
 
@@ -126,5 +126,22 @@ istream& operator>>(istream &flujo,  Tiempo &t){
     t.setSegundos(seg);
 
     return flujo;
+}
+Tiempo Tiempo::operator+(const Tiempo &t){
+
+    Tiempo seg;
+
+   seg.setSegundos( this->getSegundos() + t.getSegundos());
+
+   
+
+    seg.setMinutos(this->getMinutos() + t.getMinutos());
+
+    cout << seg << endl; 
+
+    return seg;
+}
+void Tiempo::debugON(const bool nuevo){
+    this->debug=nuevo;
 }
 
